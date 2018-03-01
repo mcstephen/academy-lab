@@ -1,0 +1,85 @@
+#header
+{
+    position: fixed;
+    /*z-index: 1; */
+    height:40px;
+    width: 90%;
+    background-color: #668284;
+    margin-bottom: 10px;
+    margin-left: 55px;
+  	/*padding-bottom: 10px;*/
+    }
+    #name {
+    float:left;
+	margin: -16px 20px 0px -135px;
+	padding-bottom: 10px;
+	font-size: 16px;
+	font-family: Verdana, sans-serif;
+	color: #ffffff;
+}
+.email{
+    float:right;
+    margin: 10px 20px 0px 0px;
+  /*  margin-right: 20px;
+	padding-bottom: 10px;*/
+	font-size: 16px;
+	font-family: Verdana, sans-serif;
+	color: #ffffff;
+}
+
+.left{ overflow: hidden;
+  float:left;
+  margin-left: 55px;
+  font-family: verdana;
+  text-align: left;
+  font-size: 110%;}
+.right{float: right;
+  margin-right: 55px;
+  font-family: verdana;
+  text-align: right;
+  font-size: 110%;
+}
+.experience
+{
+    float: left;
+    margin-top: 50px;
+    padding-left:5px;
+    /*margin-right: 10px;
+    margin-left: 14%; */
+    height: auto;
+    width: 98%;
+    /*background-color: #E3EDD8; */
+    }
+
+h1 {
+    color: blue;
+    font-family: ariel;
+    text-align: center;
+    font-size: 300%;
+}
+h2 {
+    font-family: verdana;
+    text-align: center;
+    font-size: 120%;
+}
+h3 {
+    font-family: verdana;
+    text-align: center;
+    font-size: 110%;
+}
+h4 {
+  font-family: verdana;
+    text-align: center;
+    font-size: 105%;
+    /*padding: 35px 150px; */
+}
+p {
+   padding: 30px 150px;
+   text-align:justify;
+   font-size: 110%
+}
+ul {
+   padding: 3px 150px;
+   text-align: justify;
+   font-size: 110%
+}

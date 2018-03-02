@@ -1,7 +1,7 @@
 #header
 {
     position: fixed;
-    /*z-index: 1; */
+    z-index: 1;
     height:40px;
     width: 90%;
     background-color: #668284;
@@ -9,40 +9,44 @@
     margin-left: 55px;
   	/*padding-bottom: 10px;*/
     }
-    #name {
+#name {
     float:left;
-	margin: -16px 20px 0px -135px;
-	padding-bottom: 10px;
-	font-size: 16px;
-	font-family: Verdana, sans-serif;
-	color: #ffffff;
+  	margin: -16px 20px 0px -135px;
+  	padding-bottom: 10px;
+  	font-size: 16px;
+  	font-family: Verdana, sans-serif;
+  	color: #ffffff;
 }
-.email{
+.email {
     float:right;
     margin: 10px 20px 0px 0px;
-  /*  margin-right: 20px;
-	padding-bottom: 10px;*/
-	font-size: 16px;
-	font-family: Verdana, sans-serif;
-	color: #ffffff;
+    /*  margin-right: 20px;
+  	padding-bottom: 10px;*/
+  	font-size: 16px;
+  	font-family: Verdana, sans-serif;
+  	color: #ffffff;
 }
 
-.left{ overflow: hidden;
-  float:left;
-  margin-left: 55px;
-  font-family: verdana;
-  text-align: left;
-  font-size: 110%;}
-.right{float: right;
-  margin-right: 55px;
-  font-family: verdana;
-  text-align: right;
-  font-size: 110%;
+.left {
+  overflow: hidden;
+    float:left;
+    margin-left: 55px;
+    font-family: verdana;
+    text-align: left;
+    font-size: 110%;
+  }
+
+.right {
+  float: right;
+    margin-right: 55px;
+    font-family: verdana;
+    text-align: right;
+    font-size: 110%;
 }
 .experience
 {
     float: left;
-    margin-top: 50px;
+    margin-top: 60px;
     padding-left:5px;
     /*margin-right: 10px;
     margin-left: 14%; */
@@ -50,6 +54,7 @@
     width: 98%;
     /*background-color: #E3EDD8; */
     }
+
 
 h1 {
     color: blue;
@@ -68,9 +73,9 @@ h3 {
     font-size: 110%;
 }
 h4 {
-  font-family: verdana;
+    font-family: verdana;
     text-align: center;
-    font-size: 105%;
+    font-size: 110%;
     /*padding: 35px 150px; */
 }
 p {

@@ -1,6 +1,9 @@
 
-body,h1{
+h1{
   margin: 0px;
+}
+.table1{
+  display:table;  /* allow the centering */
 }
 .hero{
   height: 100vh;
@@ -10,23 +13,47 @@ body,h1{
 }
 .hero.section-1{
   background-image: url("../img/backgroung.png");
+  /* position: absolute; */
+ left: 0px;
+ top: 0px;
+ /* width: 1920px; */
+ /* height: 1696px; */
+ /* z-index: 15; */
+    /* position: absolute; */
 }
-ul {
+.hero.section-1.home-us {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     text-align: center;
+      display: block;
 }
-li {
-        float: left;
+h2{
+  text-align: center;
+  font-size: 40px;
+  font-family: "AbrahamLincoln";
+      padding: 20px;
 }
-li a {
-    display: block;
-    padding: 8px;
+.hero.section-1,p {
+    font-size: 20px;
+    font-family: "AbrahamLincoln";
+    text-transform: uppercase;
+    line-height: 1.25;
     text-align: center;
-      /*  background-color: #dddddd; */
+    /* position: absolute; */
+    /* list-style-type: none; */
 }
+.social-text{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  text-align: right;
+  transform: rotate(90deg);
+      display: block;
+}
+
 .hero.section-2{
   background-color: red;
 }

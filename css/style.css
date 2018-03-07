@@ -124,8 +124,15 @@ body{
   color: white;
   text-transform: uppercase;
   position: absolute;
-  margin-top: 290px
+  margin-top: 290px;
   margin-left: 640px;
+}
+.brush-box{
+  position: absolute;
+  left: 1113px;
+  top: 2045px;
+  width: 491px;
+  height: 356px;
 }
 .hero.section-3{
   background-color: green;

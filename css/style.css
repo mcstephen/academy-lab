@@ -114,16 +114,19 @@ body{
   font-weight: normal;
   position: absolute;
   margin-left: 642px;
-  margin-top: 0px;
-  width: 350px;
+  margin-top: 25px;
+  width: 430px;
 }
-/* .invent-small{
-  font-size: 25px;
+.invent-small{
+  font-size: 21px;
   font-weight: normal;
   font-family: "AbrahamLincoln";
   color: white;
   text-transform: uppercase;
-} */
+  position: absolute;
+  margin-top: 290px
+  margin-left: 640px;
+}
 .hero.section-3{
   background-color: green;
 }

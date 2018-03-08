@@ -44,6 +44,7 @@ body{
 }
 .section-1>h1{
   text-align: center;
+  font-weight: normal;
   font-size: 75px;
   font-family: "Abraham Lincoln";
   color: rgb(255, 168, 0);
@@ -61,7 +62,7 @@ body{
   color: white;
   text-align: center;
   font-size: 40px;
-  font-family: "AbrahamLincoln";
+  font-family: "Abraham Lincoln";
   text-transform: uppercase;
   width: 1400px;
   padding-left: 200px;
@@ -71,7 +72,7 @@ body{
   text-align: center;
   color: white;
   font-size: 25px;
-  font-family: "AbrahamLincoln";
+  font-family: "Abraham Lincoln";
   padding-top: 115px;
 }
 /* .big-1{
@@ -120,7 +121,7 @@ body{
 .invent-small{
   font-size: 21px;
   font-weight: normal;
-  font-family: "AbrahamLincoln";
+  font-family: "Abraham Lincoln";
   color: white;
   text-transform: uppercase;
   position: absolute;
@@ -129,10 +130,34 @@ body{
 }
 .brush-box{
   position: absolute;
+  font-family: "Abraham Lincoln";
   left: 1113px;
   top: 2045px;
   width: 491px;
   height: 356px;
+}
+.sec3-body>h2{
+  font-family: "Abraham Lincoln";
+  font-size: 70px;
+  font-weight: lighter;
+  color: white;
+  position: absolute;
+  left: 388px;
+  top: 2354px;
+  width: 350px;
+  height: 262px;
+
+}
+.sec3-body>p{
+  position: absolute;
+  font-weight: lighter;
+  font-family: "Poppins";
+  color: white;
+  font-size: 20px;
+  left: 800px;
+  top: 2450px;
+  height: 100px;
+  width: 715px;
 }
 .hero.section-3{
   background-color: green;

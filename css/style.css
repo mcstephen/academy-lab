@@ -130,13 +130,13 @@ body{
 }
 .brush-box{
   position: absolute;
-  font-family: "Abraham Lincoln";
+  /* font-family: "Abraham Lincoln"; */
   left: 1113px;
   top: 2045px;
   width: 491px;
   height: 356px;
 }
-.sec3-body>h2{
+.sec2-body>h2{
   font-family: "Abraham Lincoln";
   font-size: 70px;
   font-weight: lighter;
@@ -144,11 +144,11 @@ body{
   position: absolute;
   left: 388px;
   top: 2354px;
-  width: 350px;
+  width: 20%;
   height: 262px;
 
 }
-.sec3-body>p{
+.sec2-body>p{
   position: absolute;
   font-weight: lighter;
   font-family: "Poppins";
@@ -159,6 +159,39 @@ body{
   height: 100px;
   width: 715px;
 }
+.sec2-bottom>h3{
+  font-family: "Abraham Lincoln";
+  font-size: 30px;
+  color: rgb(255, 168, 0);
+  text-transform: uppercase;
+  font-weight: lighter;
+  margin-left: 388px;
+  margin-top: 30px;
+  /* position: absolute;
+  left: 388px; */
+  /* top: 2620px; */
+  /* margin-top: 960px; */
+  width: 30%;
+  /* height: 262px; */
+}
+.hm-ico{
+  /* position: absolute; */
+  margin-left: -939px;
+  margin-top: 900px;
+  width: 53px;
+  height: 51px;
+}
+/* .sec2-bottom>p{
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: lighter;
+  color: white;
+  position: absolute;
+  left: 388px;
+  top: 2654px;
+  width: 30%;
+  height: 262px;
+} */
 .hero.section-3{
   background-color: green;
 }

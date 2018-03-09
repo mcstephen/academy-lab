@@ -395,6 +395,35 @@ margin-top: -20px;
   line-height: 1.8;
   margin-left: 20px;
 }
+.sec4-bottom-rt{
+  width: 584px;
+  height: 304px;
+  /* margin: 0 auto; */
+  /* background-color: rgb(105, 79, 202); */
+   background: white;
+  position: relative;
+  margin-right: -845px;
+  margin-top: -728px;
+  /* z-index: 1; */
+  float: right;
+}
+.sc4b-col-1>ul{
+  list-style-type: none;
+  margin: auto;
+  display: block;
+  column-count: 2;
+  column-width: auto;
+}
+.sc4b-col-1>ul>li:not(last-child){
+  padding: 0px 10px 80px ;
+}
+.sc4b-col-1>ul a{
+  text-decoration: none;
+  font-size: 30px;
+  font-family: "Abraham Lincoln";
+  color:black:
+
+}
 }
 .hero.section-5{
   background-color: orange;

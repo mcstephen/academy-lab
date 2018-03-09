@@ -219,7 +219,6 @@ margin-top: -424px;
 width: 53px;
 height: 51px;
 float: left;
-
 margin-left: -347px;
 margin-top: -20px;
 }
@@ -283,7 +282,85 @@ margin-top: -20px;
   margin-left: 805px;
 }
 .hero.section-4{
-  background-color: pink;
+  background-color: white_background;
+}
+  .glb-service{
+    font-size: 21px;
+    float: right;
+    font-weight: normal;
+    font-family: "Abraham Lincoln";
+    color: black;
+    text-transform: uppercase;
+    margin-right: 51px;
+    margin-top: -200px;
+.
+
+  }
+  .honor-hd-blk{
+
+  }
+  .transition-3-4>h1{
+    font-size: 90px;
+    font-weight: lighter;
+    font-family: "Abraham Lincoln";
+    color: Black;
+    text-transform: uppercase;
+    float: right;
+    margin-right: 51px;
+    margin-top: -486px;
+    text-align: right;
+    width: 303px;
+  }
+  .floating-box-2 {
+     float: left;
+     width: 671px;
+     height: 671px;
+     margin-top: 251px;
+     margin-left: 613px;
+     border: 20px solid black;
+   }
+  .big-2{
+    float: right;
+      font-size: 352px;
+      font-weight: lighter;
+      font-family: "Abraham Lincoln";
+      color: black;
+      text-transform: uppercase;
+      /* position: absolute; */
+      margin-right: 313px;
+      margin-top: -311px;
+  }
+
+.pencil-box{
+  position: relative;
+  float: left;
+  margin-left: 558px;
+  margin-top: -387px;
+}
+.floating-box-3 {
+   float: left;
+   width: 671px;
+   height: 671px;
+   margin-bottom: 251px;
+   margin-left: 113px;
+   border: 20px solid black;
+ }
+.big-3{
+  float: right;
+    font-size: 352px;
+    font-weight: lighter;
+    font-family: "Abraham Lincoln";
+    color: black;
+    text-transform: uppercase;
+    /* position: absolute; */
+    margin-right: -16px;
+    margin-bottom: 211px;
+}
+.man-in-box{
+  position: relative;
+  float: left;
+  margin-left: 158px;
+  margin-top: -894px;
 }
 .hero.section-5{
   background-color: orange;

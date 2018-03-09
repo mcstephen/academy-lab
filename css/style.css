@@ -3,6 +3,9 @@ body{
   background-color: white;
   margin: 0px;
 }
+*{
+  margin 0;
+}
 .hero{
   height: 100vh;
   width: 100%;
@@ -35,6 +38,7 @@ body{
 
 .section-1> h2{
   color: white;
+  font-family: "Gotham Black";
   /* width: 120px;
   height: 31px;
   border: 1px solid #fff; */
@@ -96,9 +100,10 @@ body{
   font-family: "Abraham Lincoln";
   color: rgb(255, 168, 0);
   text-transform: uppercase;
-  position: absolute;
+  /* position: absolute; */
   margin-left: 387px;
-  margin-top: 560px
+  margin-top: -321px;
+  float: left;
 }
 .hero.section-2{
   background-color: rgb(105, 79, 202);
@@ -107,57 +112,58 @@ body{
   height: 1340px;
   left: 0px;
 }
-.section-2>h1{
+.section-2>pre{
+  float: left;
   color: white;
   font-size: 100px;
   text-transform: uppercase;
   font-family: "Abraham Lincoln";
   font-weight: normal;
-  position: absolute;
-  margin-left: 642px;
-  margin-top: 25px;
-  width: 430px;
+  /* position: absolute; */
+  margin-left: -98px;
+  margin-top: -309px;
+  /* width: 430px; */
 }
 .invent-small{
   font-size: 21px;
+  float: left;
   font-weight: normal;
   font-family: "Abraham Lincoln";
   color: white;
   text-transform: uppercase;
-  position: absolute;
-  margin-top: 290px;
-  margin-left: 640px;
+  margin-top: -70px;
+  margin-left: -510px;
 }
 .brush-box{
-  position: absolute;
+  position: relative;
+  float: right;
   /* font-family: "Abraham Lincoln"; */
-  left: 1113px;
-  top: 2045px;
-  width: 491px;
-  height: 356px;
+  margin-right: 315px;
+  margin-top: -249px;
 }
 .sec2-body>h2{
   font-family: "Abraham Lincoln";
-  font-size: 70px;
+  float: left;
+  font-size: 77px;
   font-weight: lighter;
   color: white;
-  position: absolute;
-  left: 388px;
-  top: 2354px;
-  width: 20%;
-  height: 262px;
+  margin-left: -207px;
+  margin-top: 200px;
+  width: 13%;
+  height: 244px;
 
 }
 .sec2-body>p{
-  position: absolute;
   font-weight: lighter;
   font-family: "Poppins";
   color: white;
   font-size: 20px;
-  left: 800px;
-  top: 2450px;
+  float: right;
+  margin-right: 400px;
+  margin-top: 189px;
   height: 100px;
   width: 715px;
+  line-height: normal;
 }
 .sec2-bottom>h3{
   font-family: "Abraham Lincoln";
@@ -180,18 +186,52 @@ body{
   margin-top: 900px;
   width: 53px;
   height: 51px;
+
 }
-/* .sec2-bottom>p{
+.sec2-bottom>p{
   font-family: "Poppins";
   font-size: 16px;
   font-weight: lighter;
   color: white;
-  position: absolute;
-  left: 388px;
+  /* position: absolute; */
+  margin-left: 388px;
   top: 2654px;
-  width: 30%;
+  width: 18%;
   height: 262px;
-} */
+}
+.sec2-bottom-2>h3{
+  font-family: "Abraham Lincoln";
+  font-size: 30px;
+  color: rgb(255, 168, 0);
+  text-transform: uppercase;
+  font-weight: lighter;
+  margin-left: 777px;
+  margin-top: -358px;
+  width: 12%;
+  height: 30px;
+  float: left;
+}
+.mrt-ico{
+  /* position: absolute; */
+  margin-left: 53px;
+  margin-top: -143px;
+  width: 53px;
+  height: 51px;
+  float: left;
+}
+.sec2-bottom-2>p{
+  font-family: "Poppins";
+  font-size: 16px;
+  font-weight: lighter;
+  color: white;
+  margin-left: 777px;
+  margin-top: -358px;
+  /* position: absolute; */
+  /* left: 788px;
+  top: 3018px; */
+  width: 18%;
+  height: 262px;
+}
 .hero.section-3{
   background-color: green;
 }

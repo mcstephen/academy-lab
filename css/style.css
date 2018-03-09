@@ -335,6 +335,9 @@ margin-top: -20px;
   margin-left: 558px;
   margin-top: -387px;
 }
+.sec4-bottom{
+  margin-top: 200px;
+}
 .floating-box-3 {
    float: left;
    width: 671px;
@@ -424,9 +427,12 @@ margin-top: -20px;
   color:black:
 
 }
-}
 .hero.section-5{
-  background-color: orange;
+  background: url("../img/section-5-background.png");
+  top: 1680px;
+  width: 1920px;
+  height: 1951px;
+  left: 0px;
 }
 .hero.section-6{
   background-color: aqua;

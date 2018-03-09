@@ -47,11 +47,12 @@ body{
 }
 .section-1>h1{
   text-align: center;
-  font-size: 75px;
+  font-size: 90px;
+  font-weight: lighter;
   font-family: "Abraham Lincoln";
   color: rgb(255, 168, 0);
   text-transform: uppercase;
-  padding-top: 610px;
+  padding-top: 480px;
 }
 
 /* .scroll{

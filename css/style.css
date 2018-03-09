@@ -282,7 +282,7 @@ margin-top: -20px;
   margin-left: 805px;
 }
 .hero.section-4{
-  background-color: white_background;
+  background-color: white;
 }
   .glb-service{
     font-size: 21px;
@@ -293,9 +293,7 @@ margin-top: -20px;
     text-transform: uppercase;
     margin-right: 51px;
     margin-top: -200px;
-.
-
-  }
+}
   .honor-hd-blk{
 
   }
@@ -367,6 +365,36 @@ margin-top: -20px;
   float: left;
   margin-left: 677px;
   margin-top: -865px;
+}
+.little-purple-bg{
+  width: 600px;
+  height: 277px;
+  /* margin: 0 auto; */
+  background-color: rgb(105, 79, 202);
+  position: relative;
+  margin-right: -190px;
+  margin-top: -728px;
+  /* z-index: 1; */
+  float: right;
+}
+.little-purple-bg>h3{
+  color: rgb(255, 168, 0);
+  font-size: 60px;
+  font-weight: lighter;
+  font-family: "Abraham Lincoln";
+  color: rgb(255, 168, 0);
+  text-transform: uppercase;
+  margin: 27px 0 0 20px;
+}
+.little-purple-bg>p{
+  width: 500px;
+  color: white;
+  font-size: 17px;
+  font-family: "Poppins";
+  font-weight: lighter;
+  line-height: 1.8;
+  margin-left: 20px;
+}
 }
 .hero.section-5{
   background-color: orange;

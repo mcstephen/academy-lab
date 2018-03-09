@@ -193,47 +193,88 @@ body{
   font-size: 16px;
   font-weight: lighter;
   color: white;
-  /* position: absolute; */
   margin-left: 388px;
-  top: 2654px;
+  margin-top: -20px;
+  /* position: absolute; */
   width: 18%;
   height: 262px;
+float: left;
 }
 .sec2-bottom-2>h3{
-  font-family: "Abraham Lincoln";
-  font-size: 30px;
-  color: rgb(255, 168, 0);
-  text-transform: uppercase;
-  font-weight: lighter;
-  margin-left: 777px;
-  margin-top: -358px;
-  width: 12%;
-  height: 30px;
-  float: left;
+    font-family: "Abraham Lincoln";
+    font-size: 30px;
+    color: rgb(255, 168, 0);
+    text-transform: uppercase;
+    font-weight: lighter;
+    margin-left: 200px;
+    margin-top: -55px;
+    /* width: 12%; */
+    height: 30px;
+    float: left;
 }
 .mrt-ico{
-  /* position: absolute; */
-  margin-left: 53px;
-  margin-top: -143px;
-  width: 53px;
-  height: 51px;
-  float: left;
+margin-left: 779px;
+margin-top: -424px;
+width: 53px;
+height: 51px;
+float: left;
+
+margin-left: -347px;
+margin-top: -20px;
 }
 .sec2-bottom-2>p{
   font-family: "Poppins";
   font-size: 16px;
   font-weight: lighter;
   color: white;
-  margin-left: 777px;
-  margin-top: -358px;
+  margin-left: 27px;
+  margin-top: -20px;
   /* position: absolute; */
-  /* left: 788px;
-  top: 3018px; */
   width: 18%;
   height: 262px;
+  float: left;
 }
+
+  /* font-family: "Poppins";
+    font-size: 16px;
+    font-weight: lighter;
+    color: white;
+    margin-left: -347px;
+    margin-top: -20px;
+    /* position: absolute; */
+    /* width: 18%;
+    height: 262px;
+    float: left;  */
+
 .hero.section-3{
-  background-color: green;
+  /* background-color: green; */
+  background: url("../img/WeAreUnitybg.png");
+  top: 1680px;
+  width: 1920px;
+  height: 1951px;
+  left: 0px;
+  background-repeat: no-repeat;
+}
+.section-3 h1{
+  text-align: center;
+  font-weight: normal;
+  font-size: 100px;
+  font-family: "Abraham Lincoln";
+  color: black;
+  text-transform: uppercase;
+  float: left;
+  margin-left: 630px;
+  margin-top: 280px;
+}
+.section-3 p{
+  font-size: 22px;
+  font-family: "Poppins";
+  color: black;
+  float: left;
+  margin-top: -60px;
+  margin-left: 518px;
+  width: 860px;
+  text-align: center
 }
 .hero.section-4{
   background-color: pink;

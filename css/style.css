@@ -431,8 +431,115 @@ margin-top: -20px;
   background: url("../img/section-5-background.png");
   top: 1680px;
   width: 1920px;
-  height: 1951px;
+  height: 2560px;
   left: 0px;
+}
+.sec-5-main>h1{
+  text-align: center;
+  font-size: 90px;
+  font-weight: lighter;
+  font-family: "Abraham Lincoln";
+  color: Black;
+  text-transform: uppercase;
+  /* float: left; */
+  text-align: center;
+  font-size: 90px;
+  font-weight: lighter;
+  font-family: "Abraham Lincoln";
+  padding-top: 1214px;
+}
+.sec-5-main>p{
+  font-size: 40px;
+  font-weight: lighter;
+  font-family: "Abraham Lincoln";
+  color: Black;
+  text-transform: capitalize;
+  /* float: left; */
+  letter-spacing: 0.3em;
+  text-align: center;
+  width: 1400px;
+  padding-left: 200px;
+  padding-top: 20px;
+}
+.sec-5-btm>h3{
+  font-size: 20px;
+  font-weight: lighter;
+  font-family: "Poppins";
+  color: Black;
+  text-transform: capitalize;
+  /* float: left; */
+  letter-spacing: 0.3em;
+  text-align: center;
+  width: 1400px;
+  padding-left: 200px;
+  padding-top: 20px;
+}
+.sec5-img-1{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sec5-testi-1{
+  width: 377px;
+  height: 525px;
+  /* margin: 0 auto; */
+  background-color: white;
+  float: left;
+  margin-right: 21px;
+  margin-left: 100px;
+}
+.sec5-testi-1>img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 45px;
+}
+.sec5-testi-1>p{
+  font-family: "Georgia";
+  margin-top: 15px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  line-height: 23px;
+  width: 362px;
+}
+.sec5-testi-2{
+  width: 377px;
+  height: 525px;
+  background-color: rgb(105, 79, 202);
+  float: left;
+  margin-right: 23px;
+}
+.sec5-testi-2>img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 45px;
+}
+.sec5-testi-2>p{
+  font-family: "Georgia";
+  margin-top: 15px;
+  font-size: 18px;
+  line-height: 23px;
+  width: 362px;
+}
+.sec5-testi-3{
+  width: 377px;
+  height: 525px;
+  background-color: white;
+  float: left;
+}
+.sec5-testi-3>img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 45px;
+}
+.sec5-testi-3>p{
+  font-family: "Georgia";
+  margin-top: 15px;
+  font-size: 18px;
+  line-height: 23px;
+  width: 362px;
 }
 .hero.section-6{
   background-color: aqua;

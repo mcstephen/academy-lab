@@ -542,7 +542,14 @@ margin-top: -20px;
   width: 362px;
 }
 .hero.section-6{
-  background-color: aqua;
+  background-color: black;
+}
+.sec6-footer-top>h1{
+  color: white;
+  font-family: "Gotham Black";
+  font-weight: lighter;
+  margin-left: 0px;
+  text-transform: uppercase;
 }
 
 footer{

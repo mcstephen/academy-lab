@@ -1,24 +1,29 @@
-body{
+body, html{
   /* background: url("../img/white_background.png"); */
   background-color: white;
   margin: 0px;
+  padding: 0px;
+  width: 1920px;
 }
-*{
-  margin 0;
-}
-.hero{
+/* .hero{
   height: 100vh;
-  width: 100%;
+  /* width: 100%; */
+  /* width: 1920px; */
   /* margin: 0px;
   padding: 0px; */
-}
 
 .section-1{
   background: url("../img/background.png");
+  background-color: Black;
   top: 1680px;
-  width: 1920px;
-  height: 1951px;
+  /* width: 1920px; */
+  /* width: 100%; */
+  height: 1950px;
   left: 0px;
+  overflow: auto;
+}
+.sec1-unity-hdr{
+
 }
 .home-us{
   text-align: center;
@@ -33,19 +38,27 @@ body{
   font-family: "Abraham Lincoln";
   text-decoration: none;
   /* padding-top: 71px; */
-  padding: 20px;
+  padding: 24px;
+  letter-spacing: 5px;
+  font-weight: normal;
 }
-
-.section-1> h2{
+.sec1-unity-hdr{
+  width: 45%;
+  margin: 100px auto;
+}
+.sec1-unity-hdr> h2{
   color: white;
   font-family: "Gotham Black";
   font-weight: lighter;
   text-align: center;
-  padding-top: 157px;
   text-transform: uppercase;
-  /* left: 886px; */
+  padding: 5px;
+  border: 2px solid white;
+  width: 10%;
+  /* margin: 0px auto 25px; */
+  margin: 5px 345px 70px;
 }
-.section-1>h1{
+.honor>h1{
   text-align: center;
   font-size: 90px;
   font-weight: lighter;
@@ -61,7 +74,7 @@ body{
    color: white;
    align-text: center;
 } */
-.section-1>p{
+.honor>p{
   color: white;
   font-weight: lighter;
   letter-spacing: 0.3em;
@@ -73,12 +86,32 @@ body{
   padding-left: 200px;
   padding-top: 20px;
 }
-.section-1>pre{
-  text-align: center;
+.scroll{
+    width: 10%;
+    margin: 200px auto;
+    text-align: center;
+}
+.scroll p{
+  color: white;
+  float: left;
+  margin-left: 77px;
+  font-size: 49px;
+}
+.scroll h3{
   color: white;
   font-size: 25px;
   font-family: "Abraham Lincoln";
-  padding-top: 115px;
+  margin: 0;
+  letter-spacing: 7px;
+  font-weight: normal;
+}
+.white-rec{
+    width: 60px;
+    height: 63px;
+    margin: 0 auto;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
 }
 /* .big-1{
   font-size: 250px;
@@ -91,7 +124,7 @@ body{
     float: left;
     width: 671px;
     height: 671px;
-    margin-top: 160px;
+    margin-top: -350px;
     margin-left: 613px;
     border: 20px solid white;
   }
@@ -101,17 +134,17 @@ body{
   font-family: "Abraham Lincoln";
   color: rgb(255, 168, 0);
   text-transform: uppercase;
-  /* position: absolute; */
   margin-left: 387px;
   margin-top: -321px;
   float: left;
 }
-.hero.section-2{
+.section-2{
   background-color: rgb(105, 79, 202);
   top: 1680px;
-  width: 1920px;
+  /* width: 1920px; */
   height: 1340px;
   left: 0px;
+
 }
 .section-2>pre{
   float: left;
@@ -120,7 +153,6 @@ body{
   text-transform: uppercase;
   font-family: "Abraham Lincoln";
   font-weight: normal;
-  /* position: absolute; */
   margin-left: -98px;
   margin-top: -309px;
   /* width: 430px; */
@@ -174,15 +206,9 @@ body{
   font-weight: lighter;
   margin-left: 388px;
   margin-top: 30px;
-  /* position: absolute;
-  left: 388px; */
-  /* top: 2620px; */
-  /* margin-top: 960px; */
   width: 30%;
-  /* height: 262px; */
 }
 .hm-ico{
-  /* position: absolute; */
   margin-left: -939px;
   margin-top: 900px;
   width: 53px;
@@ -196,7 +222,6 @@ body{
   color: white;
   margin-left: 388px;
   margin-top: -20px;
-  /* position: absolute; */
   width: 18%;
   height: 262px;
 float: left;
@@ -229,28 +254,16 @@ margin-top: -20px;
   color: white;
   margin-left: 27px;
   margin-top: -20px;
-  /* position: absolute; */
   width: 18%;
   height: 262px;
   float: left;
 }
 
-  /* font-family: "Poppins";
-    font-size: 16px;
-    font-weight: lighter;
-    color: white;
-    margin-left: -347px;
-    margin-top: -20px;
-    /* position: absolute; */
-    /* width: 18%;
-    height: 262px;
-    float: left;  */
-
-.hero.section-3{
+.section-3{
   /* background-color: green; */
   background: url("../img/WeAreUnitybg.png");
   top: 1680px;
-  width: 1920px;
+  /* width: 1920px; */
   height: 1951px;
   left: 0px;
   background-repeat: no-repeat;
@@ -281,8 +294,10 @@ margin-top: -20px;
   margin-top: 62px;
   margin-left: 805px;
 }
-.hero.section-4{
+.section-4{
   background-color: white;
+    /* width: 1920px; */
+  height: 500px;
 }
   .glb-service{
     font-size: 21px;
@@ -324,7 +339,6 @@ margin-top: -20px;
       font-family: "Abraham Lincoln";
       color: black;
       text-transform: uppercase;
-      /* position: absolute; */
       margin-right: 313px;
       margin-top: -311px;
   }
@@ -353,7 +367,6 @@ margin-top: -20px;
     font-family: "Abraham Lincoln";
     color: black;
     text-transform: uppercase;
-    /* position: absolute; */
     margin-right: -16px;
     margin-bottom: 211px;
 }
@@ -427,10 +440,10 @@ margin-top: -20px;
   color:black:
 
 }
-.hero.section-5{
+.section-5{
   background: url("../img/section-5-background.png");
   top: 1680px;
-  width: 1920px;
+  /* width: 1920px; */
   height: 2560px;
   left: 0px;
 }
@@ -441,11 +454,6 @@ margin-top: -20px;
   font-family: "Abraham Lincoln";
   color: Black;
   text-transform: uppercase;
-  /* float: left; */
-  text-align: center;
-  font-size: 90px;
-  font-weight: lighter;
-  font-family: "Abraham Lincoln";
   padding-top: 1214px;
 }
 .sec-5-main>p{
@@ -541,8 +549,9 @@ margin-top: -20px;
   line-height: 23px;
   width: 362px;
 }
-.hero.section-6{
+.section-6{
   background-color: black;
+  /* width: 1922px; */
 }
 .sec6-footer-top>h1{
   color: white;

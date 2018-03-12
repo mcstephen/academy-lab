@@ -569,7 +569,7 @@ z-index: 60
   margin-right: 23px;
 }
 .sec5-testimonial-2, cust-name, cust-location{
-  
+
 
 }
 .sec5-testimonial-p{
@@ -602,17 +602,15 @@ z-index: 60
 }
 .section-6{
   background-color: black;
-  /* width: 1922px; */
 }
 .footer-wrap-all{
   width: 70%;
-  height: 1100px;
+  height: 500px;
 }
 .sec6-footer-top>h1{
   color: white;
   font-family: "Gotham Black";
   font-weight: lighter;
-  margin-left: 0px;
   text-transform: uppercase;
   padding: 5px;
   border: 2px solid white;
@@ -621,6 +619,10 @@ z-index: 60
 }
 .section-6 p, h1{
   color: white;
+}
+.email-info{
+  float: left;
+  margin-left: auto;
 }
 .sec6-footer-top{
   width: 50%;

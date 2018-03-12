@@ -19,6 +19,15 @@ body, html{
 .home-us{
   text-align: center;
 }
+.home-us>a{
+  color: white;
+  font-size: 20px;
+  font-family: "Abraham Lincoln";
+  text-decoration: none;
+  padding: 24px;
+  letter-spacing: 5px;
+  font-weight: normal;
+}
 .phoneicon{
   height: auto;
   position: relative;
@@ -43,15 +52,6 @@ body, html{
 }
 .social-text phoneicon{
   display: inline;
-}
-.home-us>a{
-  color: white;
-  font-size: 20px;
-  font-family: "Abraham Lincoln";
-  text-decoration: none;
-  padding: 24px;
-  letter-spacing: 5px;
-  font-weight: normal;
 }
 .sec1-unity-hdr{
   width: 45%;
@@ -529,7 +529,7 @@ z-index: 60
   background-color: white;
   float: left;
   margin-right: 21px;
-  margin-left: 100px;
+  margin-left: 363px;
 }
 .sec5-people-pics{
   display: block;
@@ -537,12 +537,29 @@ z-index: 60
   margin-right: auto;
   margin-top: 45px;
 }
+.stars {
+  padding-left: 137px;
+}
+.cust-name{
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
+  font-family: "Poppins";
+  }
+.cust-location{
+  text-transform: uppercase;
+  color: gray;
+  font-weight: lighter;
+  text-align: center;
+  font-family: "Poppins";
+}
 .sec5-testimonial-p{
   font-family: "Georgia";
   font-size: 18px;
   letter-spacing: 4px;
   line-height: 33px;
   width: 100%;
+  text-align: center;
 }
 .sec5-testimonial-2{
   width: 377px;
@@ -550,6 +567,10 @@ z-index: 60
   background-color: rgb(105, 79, 202);
   float: left;
   margin-right: 23px;
+}
+.sec5-testimonial-2, cust-name, cust-location{
+  
+
 }
 .sec5-testimonial-p{
   font-family: "Georgia";
@@ -559,7 +580,7 @@ z-index: 60
   line-height: 33px;
   width: 100%;
 }
-.sec5-testimonial-3{
+.sec5-testimonial-3, sec5-testimonial-1{
   width: 377px;
   height: 525px;
   background-color: white;
@@ -583,18 +604,47 @@ z-index: 60
   background-color: black;
   /* width: 1922px; */
 }
+.footer-wrap-all{
+  width: 70%;
+  height: 1100px;
+}
 .sec6-footer-top>h1{
   color: white;
   font-family: "Gotham Black";
   font-weight: lighter;
   margin-left: 0px;
-
   text-transform: uppercase;
   padding: 5px;
   border: 2px solid white;
   width: 10%;
+  margin: 5px 345px 70px;
 }
-
+.section-6 p, h1{
+  color: white;
+}
+.sec6-footer-top{
+  width: 50%;
+  display: inline-block;
+}
+.sec6-footer-top a{
+}
+.about-us{
+  float: left;
+    width: 350px;
+    /* margin: 150px 0px 100px 200px; */
+}
+.about-box p{
+  /* float: left; */
+}
+.news{
+  float: left;
+  }
+  .blog-wrapper{
+    float: left;
+  }
+  blog-wrapper p{
+    float: left;
+  }
 footer{
   height:250px;
   width: 100%;

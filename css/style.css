@@ -607,7 +607,7 @@ z-index: 60
   width: 70%;
   height: 500px;
 }
-.sec6-footer-top>h1{
+.unity-bottom{
   color: white;
   font-family: "Gotham Black";
   font-weight: lighter;
@@ -617,18 +617,29 @@ z-index: 60
   width: 10%;
   margin: 5px 345px 70px;
 }
-.section-6 p, h1{
+.section-6 p, h1, .email-info{
   color: white;
 }
 .email-info{
-  float: left;
-  margin-left: auto;
+
+}
+.mail-pic{
+  height: 21px;
+  width: 21px;
 }
 .sec6-footer-top{
-  width: 50%;
+  /* width: 50%; */
   display: inline-block;
+  margin-top: 66px;
+  margin-left: 377px;
 }
 .sec6-footer-top a{
+}
+.about-wrapper{
+  margin-left: 377px;
+}
+.about-us h4{
+  color: white;
 }
 .about-us{
   float: left;
@@ -637,6 +648,7 @@ z-index: 60
 }
 .about-box p{
   /* float: left; */
+  font-family: "roboto";
 }
 .news{
   float: left;

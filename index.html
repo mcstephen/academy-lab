@@ -10,7 +10,11 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
-
+<!--  main issue is positioning -->
+<!-- please walkthru flow and positioning or provide useful reading -->
+<!--  strugled with top sections on most pages-->
+<!--  better use of selectors to reduce individual selectors -->
+<!-- better use of sections, divs, articles -->
 <body>
     <section class="section-1">
         <div class="sec1-unity-hdr">
@@ -33,25 +37,32 @@
             <h3>SCROLL</h3>
             <p>\/</p>
         </div>
+        /* social links not aligned correctly */
         <div class="side-vertical">
-            <img src="./img/phoneicon.png" class="phoneicon" alt="no phoneicon" />
-            <nav class="social-text">
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
-                <a href="#">Instagram</a>
-                <a href="#">youtube</a>
-            </nav>
-        </div>
+          <img src="./img/phoneicon.png" class="phoneicon" alt="no phoneicon" />
+          <div class="copyright">
+            <span>copyright 2016 Unity Template</span>
+          </div>
+          <nav class="social-text">
+            <ul>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">youtube</a></li>
+            </ul>
+          </nav>
+      </div>
+
     </section>
+    <!--  what is best way to create this box and is z-index useful-->
     <div class="floating-box"></div>
     <h4 class="big-1">01.</h4>
     <div class="section-2">
-        <!-- <h1 class="Invites-h1">Invites Active Attention</h1> -->
         <pre class="invites-h1">
         Invites
         Active Attention</pre>
         <p class="invent-small">That's Why We Invent, and Build Digital Campaigns</p>
-        <img src="./img/brush-box.png" class="brush-box" alt="no brush box" />
+        <img src="./img/brushbox-w-shadow.png" class="brush-box" alt="no brush box" />
         <div class="sec2-body">
             <h2>Complexity should be secret</h2>
             <p>We know you have a story to tell. You want the world to embrace your incredible ideas, products, and services. Trouble is, you're not sure about the best way to get your message across. No problem. We do.</p>
@@ -71,6 +82,11 @@
             <h3>100% Support</h3>
             <p>Curabitur sit amet suscipit sagittis est. Ut acet nisi porttitor vestibulum. Donec a laoreet mi, at pretium lectus.</p>
         </div>
+        <div class="lines">
+          <span class="yellow"></span>
+          <span></span>
+          <span></span>
+        </div>
     </div>
     <div class="section-3">
         <h1>We Love Our Clients</h1>
@@ -81,13 +97,10 @@
 
     </div>
     <div class="transition-3-4">
-        <!-- <h1 class="Invites-h1">Invites Active Attention</h1> -->
-        <!-- <pre class="honor-hd-blk">
-                 Invites
-                 Active Attention</pre> -->
         <h1> Honor The Details</h1>
         <p class="glb-service">For the Global Service Design Network</p>
         <img src="./img/shadow.png" class="pencil-box" alt="no brush box" />
+        <img src="./img/2 pencils cropped.png" class="pencils2" alt="no pencils" />
     </div>
     <div class="section-4">
         <div class="sec4-bottom">
@@ -99,6 +112,7 @@
                 <p>Although BLOC occupies a rebel position within their market of operations their rebel nature was insufficiently manifest in their existing online presence.</p>
             </div>
             <div class="sec4-bottom-rt">
+              <img src="./img/section 4 icons" class="sec4-icon-row" alt="section 4 icons"/>
                 <nav class="sc4b-col-1">
                     <ul>
                         <li><a href="#">Campaign Creative</a></li>
@@ -117,7 +131,6 @@
             <h1>Global Company With a Local Feel</h1>
             <p> we help forward-thinking clients succeed in digital culture with work that invites active attention</p>
             <img src="./img/section 5 vert-line.png" class="sec5-img-1" alt="section 5 vertical line" />
-            <!-- <p> What our Customers are saying</p> -->
         </div>
         <div class="sec-5-btm">
             <h3>What customers are saying</h3>
@@ -144,17 +157,25 @@
             </div>
         </div>
     </div>
-    <!-- <div class="footer-hd"> -->
     <section class="section-6-foot-hd">
+      <nav class="footer-heading white-text">
+    <img class="footer-phone" src="img/footer phone icon.png" alt="telephone">
+    <span class="call-now footer-text-style">CALL NOW: 0800 456 789 </span>
+      <span class="footer-unity-hd">UNITY</span>
+      <img class="envelope-pic" src="img/envelope.png" alt="mail to"> MAIL:
+      <a class="email-to footer-text-style" href="mailto:INFO@UNITY.COM">INFO@UNITY.COM<a/>
+  </nav>
+  <hr>
     </section>
-    <!-- </div> -->
     <div class="section-6-bottom">
         <div class="about-us section-6-style">
             <section>
                 <h5>ABOUT US</h5>
                 <img class="about-btm" src="img/about us lady.png" alt="missing lady">
                 <article class="about-para">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown sprinter took a galley of type and scrambled it to make
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                     when an unknown sprinter took a galley of type and scrambled it to make<br>
                     <img class="social-btn" src="img/socialmedia.png" alt="missing social">
                 </article>
         </div>

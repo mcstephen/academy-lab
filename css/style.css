@@ -6,6 +6,10 @@ body{
      padding: 0px;
      width: 1920px;
 }
+.wrapper{
+  width: 1920px;
+  height: auto;
+}
  .section-1{
      background: url("../img/background.png");
      background-color: Black;
@@ -38,8 +42,8 @@ body{
  font-size: 20px;
  transform: rotate(-90deg);
  position: absolute;
- bottom: 0px;
- left: 1095px;
+ bottom: 63px;
+ left: 863px;
 }
 
 .copyright, .social-text a{
@@ -50,11 +54,11 @@ body{
 .side-vertical nav{
 	width: 514px
 }
-.side-vertical hr{
+/* .side-vertical hr{
     width: 10%;
     height: 1px;
     background-color: white;
-}
+} */
 .side-vertical li{
    display: inline-block;
    width: 24%;

@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Prototype</title>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <!-- link rel="stylesheet" type="text/css" href="css/normalize.css -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="fonts/css/fonts.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -16,31 +17,33 @@
 <!--  better use of selectors to reduce individual selectors -->
 <!-- better use of sections, divs, articles -->
 <body>
-  <wrapper class="wrapper">
-    <section class="section-1">
-        <div class="sec1-unity-hdr">
-            <h2>Unity</h2>
-            <nav class="home-us">
-                <a href="#section-2">Home</a>
-                <a href="#">About US</a>
-                <a href="#">Services</a>
-                <a href="#">Partfolio</a>
-                <a href="#">Blag</a>
-                <a href="#">Shup</a>
-            </nav>
+  <wrapper class="container-fluid">
+    <section class="section-1 row">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="sec1-unity-hdr">
+                    <h2>Unity</h2>
+                    <nav class="home-us">
+                        <a href="#section-2">Home</a>
+                        <a href="#">Aboot US</a>
+                        <a href="#">Services</a>
+                        <a href="#">Partfolio</a>
+                        <a href="#">Blag</a>
+                        <a href="#">Shup</a>
+                    </nav>
+                </div>
+            </div>
         </div>
-        <div class="honor">
-            <h1>Honor The Details</h1>
-            <p>we bring your products or services across in ways that make people feel good as they engage with your business</p>
+        <div class="honor row">
+            <h1 class="col-md-4">Honor The Details</h1>
+            <p class="col-md-8">we bring your products or services across in ways that make people feel good as they engage with your business</p>
         </div>
-        <div class="scroll">
+        <div class="scroll col-sm-2">
             <img src="./img/white-Rectangle-three-side.png" class="white-rec" alt="no scroll box" />
             <h3>SCROLL</h3>
             <p>\/</p>
         </div>
-        <!-- /* social links no aligned correctly */ -->
         <div class="side-vertical">
-
           <div class="copyright">
             <span>copyright 2016 Unity Template</span>
           </div>
@@ -56,14 +59,13 @@
       </div>
 
     </section>
-    <div class="floating-box">
-    </div>
-      <h4 class="big-1">01.</h4>
-      <div class="section-2">
-        <pre class="invites-h1">
+    <section class="section-2 row">
+         <p class="floating-box col-lg-10"> </p>
+         <h4 class="big-1 col-lg-04">01.</h4>
+         <!-- <pre class="invites-h1 col-lg-4">
         Invites
-        Active Attention</pre>
-        <p class="invent-small">That's Why We Invent, and Build Digital Campaigns</p>
+        Active Attention</pre> -->
+        <p class="invent-small" col-md-4>That's Why We Invent, and Build Digital Campaigns</p>
         <img src="./img/brushbox-w-shadow.png" class="brush-box" alt="no brush box" />
         <div class="sec2-body">
             <h2>Complexity should be secret</h2>
@@ -89,7 +91,7 @@
           <span></span>
           <span></span>
         </div>
-    </div>
+    </section>
     <div class="section-3">
         <h1>We Love Our Clients</h1>
         <p>We Take Pride in delivering intelligent Designs and Engaging Experience for Clients all over the world</p>

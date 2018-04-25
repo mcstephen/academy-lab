@@ -20,28 +20,13 @@ var library = function (stoKey) {
 
 };
 
-// library.prototype.init = function(){
-//   this._bindEvents();
-//   this.renderTable();
-// };
-// library.prototype._bindMyEvents = function () {
-//   $("#runButton").on( "click", function(event) {
-//     alert("bind my events");
-//     // this.searchInputText();
-//   });
-//   $("#selectFunction").on( "onchange", function() {
-//     this.choiceSelect();
-// });
-//   //Bind all my event handlers here
-// };
 library.prototype._bindMyEvents = function() {
-  console.log("bind events start");
   $(".table").on("click", ".delete", $.proxy(this._handleMyEvent, this)); //delegation
   // $(".show-auths").on("click", $.proxy(this.showauthors, this));
   $("#runButton").on("click", $.proxy(this.searchInputText, this));
   $("#addButton").on("click", $.proxy(this.addABook, this));
   $("#selectFunction").on("change", $.proxy(this.choiceSelect, this));
-  console.log("bind events end");
+  $("#randomBtn").on("click", $.proxy(this.getRandomBook, this));
 };
 
 library.prototype._handleMyEvent = function(e){
@@ -67,7 +52,7 @@ library.prototype.renderRow = function(index, book){
     $( "placeholder" ).css( "font-style", "italic");
     $( "placeholder" ).css("opacity, 0.5");
     $("#btn0").show();
-    $("#myTable").tablesorter();
+    // $("#myTable").tablesorter();
     this._bindMyEvents();
     this.getLocStoLib();
     this.renderTable();
@@ -86,29 +71,22 @@ library.prototype.clrLocStoLib = function() {
   localStorage.removeItem(this.stoKey);
 }
 library.prototype.getLocStoLib = function() {
-  var tempLocalSto = JSON.parse(localStorage.getItem(this.stoKey));
-  for (var i=0; i<this.allBooks.length; i++) {
-    var x = tempLocalSto[i];
-  this.addBook(new Book(x));
+  var tempLocalSto = JSON.parse(localStorage.getItem(this.stoKey)) || [];
+  for (var i=0; i<tempLocalSto.length; i++) {
+  this.addBook(new Book(
+    tempLocalSto[i].title,
+    tempLocalSto[i].author,
+    tempLocalSto[i].numPages,
+    tempLocalSto[i].pubDate
+  ));
 };
 };
-
-// Library.prototype.getObject = function(instanceKey) {
-//  var localStorageBooks = JSON.parse(localStorage.getItem(instanceKey));
-//  for (var i = 0; i < localStorageBooks.length; i++) {
-//  var book = localStorageBooks[i];
-//  this.addBook(new Book(book));
-// }
-// return true;
-// };
-// localstorage.setitem("library", lib);
 
 var Book = function (title, author, numPages, pubDate){
   this.title = title;
   this.author = author;
   this.numPages = numPages;
   this.pubDate = new Date(pubDate).toString().slice(0,15);
-
 }
 
 var gWap = new Book("War and Peace", "Leo Tolstoy", 1296, "01/01/1869");
@@ -143,19 +121,6 @@ library.prototype.addAllBooks = function () {
   gLib.addBook(gHitch);
   gLib.renderTable();
   gLib.setLib();
-  // document.write("title         "+"    author     "+ "   pages    "+"   publish date     " + "<br />");
-//   for (var i=0; i<this.allBooks.length; i++) {
-//   var prtResult = (gLib.allBooks[i].title+"   "
-//     + gLib.allBooks[i].author
-//     +"     "
-//     +gLib.allBooks[i].numPages
-//     +"     "
-//     +gLib.allBooks[i].pubDate
-//     + "<br />");
-// //   document.write
-//
-// document.getElementById("results").innerHTML = prtResult;
-// };
   return true;
 };
 
@@ -209,14 +174,29 @@ library.prototype.removeBookByAuthor = function (author) {
 // getRandomBook()
 // Purpose: Return a random book object from your books array
 // Return: book object if you find a book, null if there are no books
+library.prototype.randomEvent = function () {
+  if (this.getRandomBook()) {
+
+  };
+
+  document.getElementById("results").innerHTML = "";
+  // document.getElementById("selectFunction").innerHTML = "0";
+  $("#searchInput" ).addClass( "d-none" );
+  if (selectFunction.selectIndex !== 0) {
+    selectFunction.selectIndex = 0
+  }
+};
 
 library.prototype.getRandomBook = function () {
   if (this.allBooks.length == 0) {
-    return null;
+    return false;
   };
   var randomNumberBetween0andlen = Math.floor(Math.random() * this.allBooks.length);
+  $("#showRecInfo").css( "font-style", "italic");
   document.getElementById("showRecInfo").innerHTML = "title: " + this.allBooks[randomNumberBetween0andlen].title +
                                                           "  author: " + this.allBooks[randomNumberBetween0andlen].author;
+
+  selectFunction.selectIndex = 0
   return this.allBooks[randomNumberBetween0andlen];
 };
 
@@ -368,6 +348,7 @@ library.prototype.choiceSelect = function (myValue) {
         document.getElementById("results").innerHTML = "no selection made";
         break;
     case "1":     //add a book
+        console.log($("#inputTitleData").class);
         $("#inputTitleData" ).removeClass( "d-none" );
         $("#searchInput" ).addClass( "d-none" );
         $("#selectLabel").text("")
@@ -382,7 +363,7 @@ library.prototype.choiceSelect = function (myValue) {
     case "3":    //book recommendation same as random book and display
         this.getRandomBook();
         document.getElementById("results").innerHTML = "";
-        document.getElementById("selectFunction").innerHTML = "0";
+        // document.getElementById("selectFunction").innerHTML = "0";
         $("#searchInput" ).addClass( "d-none" );
         break;
     case "4":    //get book by title

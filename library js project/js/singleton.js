@@ -20,13 +20,44 @@ var library = function (stoKey) {
 
 };
 
-// library.prototype.initialize = function () {
-//   // kick off functions
-// }
-//
-// library.prototype._bindEvents = function () {
-//
+// library.prototype.init = function(){
+//   this._bindEvents();
+//   this.renderTable();
 // };
+// library.prototype._bindMyEvents = function () {
+//   $("#runButton").on( "click", function(event) {
+//     alert("bind my events");
+//     // this.searchInputText();
+//   });
+//   $("#selectFunction").on( "onchange", function() {
+//     this.choiceSelect();
+// });
+//   //Bind all my event handlers here
+// };
+library.prototype._bindEvents = function() {
+  $(".table").on("click", ".delete", $.proxy(this._handleMyEvent, this)); //delegation
+  // $(".show-auths").on("click", $.proxy(this.showauthors, this));
+  $("#runButton").on("click", $.proxy(this.searchInputText, this));
+  $("#addButton").on("click", $.proxy(this.addABook, this));
+  $("#selectFunction").on("onchange", $.proxy(this.choiceSelect, this));
+};
+
+library.prototype._handleMyEvent = function(e){
+  var $tr = $(e.currentTarget).parent("tr");
+  this.allBooks.splice($tr.attr("data-id"), 1);
+  $tr.remove();
+};
+
+library.prototype.renderTable = function(){
+  for(var i=0; i < this.allBooks.length; i++){
+    this.renderRow(i, this.allBooks[i]);
+  }
+};
+
+library.prototype.renderRow = function(index, book){
+  $("table tbody").append("<tr data-id='"+index+"'><th scope='row'>"+index+"</th><td>"+book.title+"</td><td class='auth'>"+book.author+"</td><td>"+book.numPages+"</td><td class='delete'>delete</td></tr>");
+};
+
 
   library.prototype.myInitializationMethod = function () {
     //Anything I want kicked off on doc ready which is specific to my instance
@@ -36,20 +67,12 @@ var library = function (stoKey) {
     $("#btn0").show();
     $("#myTable").tablesorter();
     this._bindMyEvents();
+    this.renderTable();
   };
-  library.prototype._bindMyEvents = function () {
-    $("#runButton").on( "click", function(event) {
-      alert("bind my events");
-      // this.searchInputText();
-    });
-    $("#selectFunction").on( "onchange", function() {
-      this.choiceSelect();
-});
-    //Bind all my event handlers here
-  };
+
 $(function(){ //Doc ready
   window.gLib = new library("gLib");
-  gLib.myInitializationMethod();
+  window.gLib.myInitializationMethod();
 
 
   // window.gLib.initialize();
@@ -107,11 +130,22 @@ library.prototype.addAllBooks = function () {
   gLib.addBook(gHam);
   gLib.addBook(gMoby);
   gLib.addBook(gHitch);
-  // this.allBooks.toString();
-// document.getElementById("results").innerHTML = this.allBooks;
-
-  return true
-}
+  gLib.renderTable();
+  // document.write("title         "+"    author     "+ "   pages    "+"   publish date     " + "<br />");
+//   for (var i=0; i<this.allBooks.length; i++) {
+//   var prtResult = (gLib.allBooks[i].title+"   "
+//     + gLib.allBooks[i].author
+//     +"     "
+//     +gLib.allBooks[i].numPages
+//     +"     "
+//     +gLib.allBooks[i].pubDate
+//     + "<br />");
+// //   document.write
+//
+// document.getElementById("results").innerHTML = prtResult;
+// };
+  return true;
+};
 
 // addBook(book)
 // Purpose: Add a book object to your books array.
@@ -169,7 +203,8 @@ library.prototype.getRandomBook = function () {
     return null;
   }
   var randomNumberBetween0andlen = Math.floor(Math.random() * this.allBooks.length);
-  document.getElementById("showRecInfo").innerHTML = this.allBooks[randomNumberBetween0andlen];
+  document.getElementById("showRecInfo").innerHTML = "title: " + this.allBooks[randomNumberBetween0andlen].title +
+                                                          "  author: " + this.allBooks[randomNumberBetween0andlen].author;
   return this.allBooks[randomNumberBetween0andlen];
 }
 
@@ -225,13 +260,10 @@ library.prototype.getBookByTitle = function (title) {
  // (var i=0; i<this.allBooks.length; i++)
     library.prototype.getAuthors = function () {
       authors = [];
-      var iu = 1;
       for (var i=0; i<this.allBooks.length; i++) {
         if (authors.indexOf(this.allBooks[i].author) ===-1) {
             // authors[iu] = (this.allBooks[i].author);
             authors.push(this.allBooks[i].author);
-
-            iu++;
           }
         }
       return authors;
@@ -281,7 +313,7 @@ library.prototype.searchInputText = function () {
     document.getElementById("selectFunction").value="0";
     target.innerHTML = '<li>' + titleResults.join('</li><li>') + '</li>';
     break;
-  case "enter full book title to be removed": //label for title search
+  case "enter full book title to be removed": //label for title to remove
     if (this.removeBookByTitle(mySearchValue)) {
       $("#searchInput" ).addClass( "d-none" );
       document.getElementById("results").innerHTML = "Title " + mySearchValue + " removed";
@@ -323,10 +355,9 @@ library.prototype.choiceSelect = function (myValue) {
     case "0":
         document.getElementById("results").innerHTML = "no selection made";
         break;
-    case "1":
+    case "1":     //add a book
         $("#inputTitleData" ).removeClass( "d-none" );
         $("#searchInput" ).addClass( "d-none" );
-
         $("#selectLabel").text("")
         break;
     case "2":    //remove book by exact match , maybe preditive search
@@ -337,7 +368,9 @@ library.prototype.choiceSelect = function (myValue) {
         $("#selectLabel").text("enter full book title to be removed");
         break;
     case "3":    //book recommendation same as random book and display
+        this.getRandomBook();
         document.getElementById("results").innerHTML = "";
+        document.getElementById("selectFunction").innerHTML = "0";
         $("#searchInput" ).addClass( "d-none" );
         break;
     case "4":    //get book by title
@@ -356,7 +389,8 @@ library.prototype.choiceSelect = function (myValue) {
     case "6":    //get authors list
         $("#searchInput" ).addClass( "d-none" );
         var myAuthorsRet =  this.getAuthors();
-        target.innerHTML = '<li>' + myAuthorsRet.join('</li><li>') + '</li>';
+        // target.innerHTML = '<li>' + myAuthorsRet.join('</li><li>') + '</li>';
+        alert("author list : " + myAuthorsRet)
         console.log("authors from get authors: " + myAuthorsRet);
         // document.getElementById("results").innerHTML = "no other input required";
         break;
@@ -399,17 +433,8 @@ library.prototype.choiceSelect = function (myValue) {
         document.getElementById("bookNumPageInput1").value = '';
         document.getElementById("bookPubDateInput1").value = '';
         // below will display new title in list
-        this.allBooks.toString();
-    document.getElementById("results").innerHTML = this.allBooks;
+        gLib.renderTable();
 };
-document.getElementById("results").innerHTML = this.allBooks;
-
-//bind events
-// library.prototype.bindEvents = function () {
-//   $(#html-element-id).on("click", $proxy(this.function1, this))
-// }
-
-
 
 library.prototype.display_array = function () {
 

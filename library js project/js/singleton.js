@@ -34,12 +34,14 @@ var library = function (stoKey) {
 // });
 //   //Bind all my event handlers here
 // };
-library.prototype._bindEvents = function() {
+library.prototype._bindMyEvents = function() {
+  console.log("bind events start");
   $(".table").on("click", ".delete", $.proxy(this._handleMyEvent, this)); //delegation
   // $(".show-auths").on("click", $.proxy(this.showauthors, this));
   $("#runButton").on("click", $.proxy(this.searchInputText, this));
   $("#addButton").on("click", $.proxy(this.addABook, this));
-  $("#selectFunction").on("onchange", $.proxy(this.choiceSelect, this));
+  $("#selectFunction").on("change", $.proxy(this.choiceSelect, this));
+  console.log("bind events end");
 };
 
 library.prototype._handleMyEvent = function(e){
@@ -67,18 +69,14 @@ library.prototype.renderRow = function(index, book){
     $("#btn0").show();
     $("#myTable").tablesorter();
     this._bindMyEvents();
+    this.getLocStoLib();
     this.renderTable();
   };
 
-$(function(){ //Doc ready
+$( document ).ready (function() { //Doc ready
   window.gLib = new library("gLib");
   window.gLib.myInitializationMethod();
-
-
-  // window.gLib.initialize();
 });
-// var gLib = new library("libKey");
-// var gLibx = new library("libKeyx");
 
 
 library.prototype.setLib = function() {
@@ -88,8 +86,21 @@ library.prototype.clrLocStoLib = function() {
   localStorage.removeItem(this.stoKey);
 }
 library.prototype.getLocStoLib = function() {
-  this.allBooks = JSON.parse(localStorage.getItem(this.stoKey));
-}
+  var tempLocalSto = JSON.parse(localStorage.getItem(this.stoKey));
+  for (var i=0; i<this.allBooks.length; i++) {
+    var x = tempLocalSto[i];
+  this.addBook(new Book(x));
+};
+};
+
+// Library.prototype.getObject = function(instanceKey) {
+//  var localStorageBooks = JSON.parse(localStorage.getItem(instanceKey));
+//  for (var i = 0; i < localStorageBooks.length; i++) {
+//  var book = localStorageBooks[i];
+//  this.addBook(new Book(book));
+// }
+// return true;
+// };
 // localstorage.setitem("library", lib);
 
 var Book = function (title, author, numPages, pubDate){
@@ -131,6 +142,7 @@ library.prototype.addAllBooks = function () {
   gLib.addBook(gMoby);
   gLib.addBook(gHitch);
   gLib.renderTable();
+  gLib.setLib();
   // document.write("title         "+"    author     "+ "   pages    "+"   publish date     " + "<br />");
 //   for (var i=0; i<this.allBooks.length; i++) {
 //   var prtResult = (gLib.allBooks[i].title+"   "
@@ -159,7 +171,7 @@ library.prototype.addBook = function (newBook) {
     }
     this.allBooks.push(newBook);
     return true;
-}
+};
 //
 // removeBookByTitle(title)
 // Purpose: Remove book from from the books array by its title.
@@ -201,12 +213,12 @@ library.prototype.removeBookByAuthor = function (author) {
 library.prototype.getRandomBook = function () {
   if (this.allBooks.length == 0) {
     return null;
-  }
+  };
   var randomNumberBetween0andlen = Math.floor(Math.random() * this.allBooks.length);
   document.getElementById("showRecInfo").innerHTML = "title: " + this.allBooks[randomNumberBetween0andlen].title +
                                                           "  author: " + this.allBooks[randomNumberBetween0andlen].author;
   return this.allBooks[randomNumberBetween0andlen];
-}
+};
 
 // getBookByTitle(title)
 // Purpose: Return all books that completely or partially matches the string title
@@ -438,4 +450,4 @@ library.prototype.choiceSelect = function (myValue) {
 
 library.prototype.display_array = function () {
 
-}
+};

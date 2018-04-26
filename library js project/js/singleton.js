@@ -36,8 +36,13 @@ library.prototype._handleMyEvent = function(e){
 };
 
 library.prototype.renderTable = function(){
+  $("tbody").children().remove();
   for(var i=0; i < this.allBooks.length; i++){
     this.renderRow(i, this.allBooks[i]);
+
+//     $('#example').dataTable( {
+//     "order": [[ 0, 'asc' ], [ 1, 'asc' ]]
+// } );
   }
 };
 
@@ -55,7 +60,9 @@ library.prototype.renderRow = function(index, book){
     // $("#myTable").tablesorter();
     this._bindMyEvents();
     this.getLocStoLib();
+    $(".table").DataTable();
     this.renderTable();
+    this.getRandomBook();
   };
 
 $( document ).ready (function() { //Doc ready
@@ -120,7 +127,7 @@ library.prototype.addAllBooks = function () {
   gLib.addBook(gMoby);
   gLib.addBook(gHitch);
   gLib.renderTable();
-  gLib.setLib();
+  this.setLib();
   return true;
 };
 
@@ -165,8 +172,10 @@ library.prototype.removeBookByAuthor = function (author) {
 
     }
     if (b > 0) {
+      this.renderTable();
       return true;
     }
+    this.renderTable();
     return false;
 }
 
@@ -297,13 +306,17 @@ library.prototype.searchInputText = function () {
   var mySearchValue = document.getElementById("textInput").value;
   var mySearchLabel = document.getElementById("selectLabel").innerText;
     switch (mySearchLabel) {
-  case "enter full book title": //label for title search
+  case "enter book title": //label for title search
     var titleResults = this.getBookByTitle(mySearchValue);
     $("#searchInput" ).addClass( "d-none" );
     document.getElementById("results").innerHTML = "please make a selection";
     document.getElementById("textInput").value="";
     document.getElementById("selectFunction").value="0";
-    target.innerHTML = '<li>' + titleResults.join('</li><li>') + '</li>';
+    // target.innerHTML = '<li>' + titleResults.join('</li><li>') + '</li>';
+    $("tbody").children().remove();
+    for(var i=0; i < titleResults.length; i++){
+      this.renderRow(i, titleResults[i]);
+    };
     break;
   case "enter full book title to be removed": //label for title to remove
     if (this.removeBookByTitle(mySearchValue)) {
@@ -311,10 +324,14 @@ library.prototype.searchInputText = function () {
       document.getElementById("results").innerHTML = "Title " + mySearchValue + " removed";
       document.getElementById("textInput").value="";
       document.getElementById("selectFunction").value="0";
+      this.renderTable();
       this.setLib();
-      break;
-    };
-    target.innerHTML = '<li>' + titleResults.join('</li><li>') + '</li>';
+    }    else {
+      $("#searchInput" ).removeClass( "d-none" );
+
+      document.getElementById("compMsg").innerHTML = "not found";
+    }
+    // target.innerHTML = '<li>' + titleResults.join('</li><li>') + '</li>';
     break;
   case "enter authors full name": //label for title search by author
     var titleResults = this.getBooksByAuthor(mySearchValue);
@@ -322,7 +339,11 @@ library.prototype.searchInputText = function () {
     document.getElementById("textInput").value="";
     document.getElementById("selectFunction").value="0";
     $("#searchInput" ).addClass( "d-none" );
-    target.innerHTML = '<li>' + titleResults.join('</li><li>') + '</li>';
+    $("tbody").children().remove();
+    for(var i=0; i < titleResults.length; i++){
+      this.renderRow(i, titleResults[i]);
+    };
+    // target.innerHTML = '<li>' + titleResults.join('</li><li>') + '</li>';
     break;
   case "enter full author to be removed": //label for title search by author
     var titleResults = this.removeBookByAuthor(mySearchValue);
@@ -330,8 +351,10 @@ library.prototype.searchInputText = function () {
     document.getElementById("textInput").value="";
     document.getElementById("selectFunction").value="0";
     $("#searchInput" ).addClass( "d-none" );
+    $("#compMsg" ).removeClass( "d-none" );
+    this.renderTable();
     this.setLib();
-    target.innerHTML = '<li>' + titleResults.join('</li><li>') + '</li>';
+    // target.innerHTML = '<li>' + titleResults.join('</li><li>') + '</li>';
     break;
 
   default:
@@ -370,7 +393,7 @@ library.prototype.choiceSelect = function (myValue) {
         $("#searchInput" ).removeClass( "d-none" );
         // $("#searchInput" ).show();
         document.getElementById("results").innerHTML = "please enter title";
-        $("#selectLabel").text("enter full book title");
+        $("#selectLabel").text("enter book title");
         $("#textInput" ).show();
         break;
     case "5":    //get book by author
@@ -390,13 +413,13 @@ library.prototype.choiceSelect = function (myValue) {
     case "7":    //get random author's books
         document.getElementById("results").innerHTML = "no other input required";
         break;
-        case "8":    //remove book by exact author , maybe preditive search
-            $("#inputTitleData" ).addClass( "d-none" );
-            $("#searchInput" ).removeClass( "d-none" );
-            $("#textInput" ).show();
-            document.getElementById("results").innerHTML = "please enter Author to remove";
-            $("#selectLabel").text("enter full author to be removed");
-            break;
+    case "8":    //remove book by exact author , maybe preditive search
+        $("#inputTitleData" ).addClass( "d-none" );
+        $("#searchInput" ).removeClass( "d-none" );
+        $("#textInput" ).show();
+        document.getElementById("results").innerHTML = "please enter Author to remove";
+        $("#selectLabel").text("enter full author to be removed");
+        break;
     default:
         document.getElementById("results").innerHTML = "please make a selection";
       };
@@ -426,7 +449,10 @@ library.prototype.choiceSelect = function (myValue) {
         document.getElementById("bookNumPageInput1").value = '';
         document.getElementById("bookPubDateInput1").value = '';
         // below will display new title in list
-        gLib.renderTable();
+        this.renderTable();
+        document.getElementById("textInput").value="";
+        document.getElementById("selectFunction").value="0";
+        $("#inputTitleData" ).addClass( "d-none" );
 };
 
 library.prototype.display_array = function () {

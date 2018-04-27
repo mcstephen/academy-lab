@@ -12,11 +12,39 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
+<header class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1076');">
+  <img class="img-fluid d-block mx-auto" src="https://pbs.twimg.com/card_img/989134348237594624/67i-4AJw?format=jpg&name=386x202" alt="">
+</header>
 <body>
-  <div "id=wrapper" class="container bgimg-1">
+  <div "id=wrapper" class="container">
  <div class="header clearfix">
-   <nav>
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">js 201 library project</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+   <!-- <nav>
      <ul class="nav nav-pills float-right">
        <li class="nav-item">
          <a class="nav-link active" href="#">Select <span class="sr-only">(current)</span></a>
@@ -28,15 +56,38 @@
          <a class="nav-link" href="#">Signout</a>
        </li>
      </ul>
-   </nav>
+   </nav> -->
    <h3 class="text-muted"></h3>
  </div>
-
- <div class="jumbotron">
+ <!-- Button trigger modal -->
+  <button id="modalBtn" type="button" class="btn btn-light" data-toggle="modal" data-target="#yodalModalLong">
+    author modal
+  </button>
+   <!-- Modal -->
+   <div class="modal fade" id="yodalModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+     <div class="modal-dialog" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body">
+           <p id="myAuthors">fghfghgfhgfh</p>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+           <button type="button" class="btn btn-primary">Save changes</button>
+         </div>
+       </div>
+     </div>
+   </div>
+ <!-- <div class="jumbotron">
    <h1 class="display-3">JS 201 Project</h1>
    <p class="lead"></p>
    <p><a class="btn btn-lg btn-success d-none" href="#" role="button">do not use</a></p>
- </div>
+ </div> -->
 
     <div class="mainArea m-5">
           <h1 class="text-center bg-dark">Staff Favorites</h1>
@@ -79,7 +130,8 @@
         <h3></h3>
         <div class="row mt-5 mb-5">
         <div class="card col-md-2" style="width: 18rem;">
-            <img class="card-img-top img-fluid" src="http://bento.cdn.pbs.org/hostedbento-prod/filer_public/gar-phase-2/assets/1984.jpg" alt="Card image cap">
+            <!-- <img class="card-img-top img-fluid" src="http://bento.cdn.pbs.org/hostedbento-prod/filer_public/gar-phase-2/assets/1984.jpg" alt="Card image cap"> -->
+            <img class="card-img-top img-fluid" src="http://via.placeholder.com/410x629" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Featured Book</h5>
                 <p class="card-text" id="showRecInfo">Title and author info</p>
@@ -89,7 +141,7 @@
         </div>
             <button id="btn0" class="d-none" type="button" onclick="gLib.addAllBooks()">load all books</button>
             <form>
-                <div class="form-group ml-5">
+                <div class="form-group ml-5 mr-5">
                     <label for="selectFunction">Select from list</label>
                      <!-- onchange="gLib.choiceSelect() -->
                     <select class="form-control" id="selectFunction">
@@ -97,29 +149,31 @@
                         <option value="1">add a book</option>
                         <option value="2">remove a book by title</option>
                         <option value="3">book recommendation</option>
-                        <option value="4">get book by title</option>
+                        <option value="4">get book(s) by title</option>
                         <option value="5">get books by author</option>
-                        <option value="6">get authors</option>
+                        <option value="6" data-toggle="modal" data-target="#yodalModalLong">get authors</option>
                         <option value="7">get random author</option>
                         <option value="8">burn books by author</option>
 
                     </select>
+                    <div class="col-sm">
+                      <p id="compMsg" class="d-none"></p>
+                    </div>
                     <div id="searchInput" class="d-none">
                         <label id="selectLabel">Enter full or partial title:</label>
                             <input id="textInput" class="w-50" type="text">
                             <!-- </> -->
                             <!--  onclick="gLib.searchInputText()  /> -->
                             <button id="runButton" type="button">submit</button>
-                            <p id="compMsg" class="d-none">function completed</p>
                     </div>
 
                 </div>
             </form>
-            <form id="inputTitleData" class="row m-5 d-none">
+            <form id="inputTitleData" class="row d-none">
                 <div class="d-inline">
-                    <div class="form-group mr-5">
+                    <div class="form-group">
                         <label for="bookTitleInput1">book title</label>
-                        <input type="text" class="form-control col-md" id="bookTitleInput1" placeholder="enter full title">
+                        <input type="text" class="form-control" id="bookTitleInput1" placeholder="enter full title">
                     </div>
                     <div class="form-group mr-5">
                         <label for="bookAuthorInput1">author name</label>
@@ -141,13 +195,14 @@
           </div>
             <div id="tabResult">
                 <p id="results"></p>
-                <table class="table table-striped">
+                <table id="MyTable" class="table table-striped">
                   <thead class="thead-dark">
                     <tr>
                       <th scope="col">#</th>
                       <th scope="col">title</th>
                       <th scope="col">authors</th>
                       <th scope="col">pages</th>
+                      <!-- <th scope="col">image</th> -->
                       <th scope="col">remove</th>
                     </tr>
                   </thead>
@@ -167,11 +222,11 @@
 
             <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.0/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
             <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
             <script src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/absolute.js"></script>
             <!-- <script src="js/jquery.js" charset="utf-8"></script> -->
-            <script src="js/singleton.js" charset="utf-8"></script>
+            <script src="js/script.js" charset="utf-8"></script>
             <!-- <script src="js/jquery.tablesorter.js" charset="utf-8"></script> -->
 
     </div>

@@ -23,12 +23,25 @@ var library = function (stoKey) {
 library.prototype._bindMyEvents = function() {
   $("#MyTable").on("click", ".delete", $.proxy(this._handleMyEvent, this)); //delegation
   // $(".show-auths").on("click", $.proxy(this.showauthors, this));
+  $("#MyTable").on("click", "#sortTitle", $.proxy(this._handleSortTitle, this)); //delegation
+  $("#MyTable").on("click", "#sortAuth", $.proxy(this._handleSortAuth, this)); //delegation
+  $("#MyTable").on("click", "#sortPages", $.proxy(this._handleSortPages, this)); //delegation
   $("#runButton").on("click", $.proxy(this.searchInputText, this));
   $("#addButton").on("click", $.proxy(this.addABook, this));
   $("#selectFunction").on("change", $.proxy(this.choiceSelect, this));
   $("#randomBtn").on("click", $.proxy(this.getRandomBook, this));
   $("#modalBtn").on("click", $.proxy(this.getAuthors, this));
-
+//   $("#image").on("mouseover", $.proxy(this.popImage, this);
+//   $("#image").on("mouseout", $.proxy(this.popImage, this);
+//
+//
+//   library.prototype.popImage = function() {
+//     this.allBooks(this.$($0).data("id"));
+//                            $("#pop-up").show();
+//    });
+// $("#image").mouseout(function(){
+//                            $("#pop-up").hide();
+//                          });
 };
 
 library.prototype._handleMyEvent = function(e){
@@ -38,6 +51,61 @@ library.prototype._handleMyEvent = function(e){
   this.setLib();
 };
 
+library.prototype._handleSortTitle = function() {
+  debugger
+  this.allBooks.sort(function (a,b) {
+    var titleA = a.title.toUpperCase();
+    var titleB = b.title.toUpperCase();
+
+    if (titleA < titleB) {
+      return -1;
+    }
+    if (titleA > titleB) {
+      return 1;
+    }
+    return 0;
+  });
+  this.renderTable();
+};
+library.prototype._handleSortAuth = function() {
+  this.allBooks.sort(function (a,b) {
+    var authorA = a.author.toUpperCase();
+    var authorB = b.author.toUpperCase();
+
+    if (authorA < authorB) {
+      return -1;
+    }
+    if (authorA > authorB) {
+      return 1;
+    }
+    return 0;
+  });
+  this.renderTable();
+};
+
+library.prototype._handleSortPages = function() {
+  this.allBooks.sort(function (a,b) {
+    var numPagesA = a.numPages;
+    var numPagesB = b.numPages;
+
+    if (numPagesA < numPagesB) {
+      return -1;
+    }
+    if (numPagesA > numPagesB) {
+      return 1;
+    }
+    return 0;
+  });
+  this.renderTable();
+};
+
+// library.prototype._handleSortPages = function() {
+//   this.allBooks.sort(function (a,b) {
+//     return a - b;
+//   });
+//   this.renderTable();
+// };
+
 library.prototype.renderTable = function(){
   $("tbody").children().remove();
   for(var i=0; i < this.allBooks.length; i++){
@@ -46,9 +114,8 @@ library.prototype.renderTable = function(){
 };
 
 library.prototype.renderRow = function(index, book){
-  $("table tbody").append("<tr data-id='"+index+"'><th scope='row'>"+index+"</th><td>"+book.title+"</td><td class='auth'>"+book.author+"</td><td>"+book.numPages+"</td><td class='delete'>x</td></tr>");
+  $("table tbody").append("<tr data-id='"+index+"'><th scope='row'>"+index+"</th><td>"+book.title+"</td><td class='auth'>"+book.author+"</td><td>"+book.numPages+"</td><td class='delete'>X</td></tr>");
 };
-
 
   library.prototype.myInitializationMethod = function () {
     //Anything I want kicked off on doc ready which is specific to my instance
@@ -59,9 +126,21 @@ library.prototype.renderRow = function(index, book){
     // $("#myTable").tablesorter();
     this._bindMyEvents();
     this.getLocStoLib();
-    $(".table").DataTable();
+    // $(".table").DataTable(
+    //   {
+    //     "order": [[ 2, "desc" ]]
+    // }
+    // );
+    // this.allBooks.sort();
     this.renderTable();
     this.getRandomBook();
+    this.initVars();
+  };
+
+  library.prototype.initVars = function () {
+      this.$mySearchInput = $("#textInput");
+      this.$mySearchLabel = $("#selectLabel");
+
   };
 
 $( document ).ready (function() { //Doc ready
@@ -83,19 +162,21 @@ library.prototype.getLocStoLib = function() {
     tempLocalSto[i].title,
     tempLocalSto[i].author,
     tempLocalSto[i].numPages,
-    tempLocalSto[i].pubDate
+    tempLocalSto[i].pubDate,
+    tempLocalSto[i].bookImage
   ));
 };
 };
 
-var Book = function (title, author, numPages, pubDate){
+var Book = function (title, author, numPages, pubDate, bookImage){
   this.title = title;
   this.author = author;
   this.numPages = numPages;
   this.pubDate = new Date(pubDate).toString().slice(0,15);
-}
+  this.bookImage = bookImage;
+};
 
-var gWap = new Book("War and Peace", "Leo Tolstoy", 1296, "01/01/1869");
+var gWap = new Book("War and Peace", "Leo Tolstoy", 1296, "01/01/1869", "src=img/war-and-peace.jpg" );
 var gTheBible = new Book("The Bible", "Various authors", 1200, "January 1, 2001");
 var gCatcher = new Book("Catcher in the Rye", "JD Salenger", 240, "January 2001");
 var gGatsby = new Book("The Great Gatsby", "F. Scott Fitzgerald", 256, "January 2001");
@@ -156,7 +237,7 @@ library.prototype.removeBookByTitle = function (title) {
       }
     }
     return false;
-}
+};
 
 // removeBookByAuthor(authorName)
 // Purpose: Remove a specific book from your books array by the author name.
@@ -176,7 +257,7 @@ library.prototype.removeBookByAuthor = function (author) {
     }
     this.renderTable();
     return false;
-}
+};
 
 
 // getRandomBook()
@@ -199,8 +280,9 @@ library.prototype.getRandomBook = function () {
   };
   var randomNumberBetween0andlen = Math.floor(Math.random() * this.allBooks.length);
   $("#showRecInfo").css( "font-style", "italic");
-  document.getElementById("showRecInfo").innerHTML = "title: " + this.allBooks[randomNumberBetween0andlen].title +
-                                                          "  author: " + this.allBooks[randomNumberBetween0andlen].author;
+  var randomTitle = "title: " + this.allBooks[randomNumberBetween0andlen].title +
+                                                        "  author: " + this.allBooks[randomNumberBetween0andlen].author;
+  $(".card-text").val(randomTitle);
 
   selectFunction.selectIndex = "0"
   return this.allBooks[randomNumberBetween0andlen];
@@ -214,6 +296,7 @@ library.prototype.getRandomBook = function () {
 
 library.prototype.getBookByTitle = function (title) {
   var titleBooks = [];
+  $("tbody").children().remove();
   for (var i=0; i<this.allBooks.length; i++)
     {
 
@@ -223,9 +306,22 @@ library.prototype.getBookByTitle = function (title) {
 
       }
     }
+    if ((titleBooks).length > 0) {
+      for(var i=0; i < titleBooks.length; i++){
+        this.renderRow(i, titleBooks[i]);
+      }
+      $("#compMsg" ).addClass( "d-none" );
+      $("#selectFunction").val("0");
+      $("#searchInput" ).addClass( "d-none" );
     return titleBooks;
-}
-
+} else {
+    $("#compMsg").text( "No titles found with that title");
+      $("#compMsg" ).removeClass( "d-none" );
+      $("#selectFunction").val("0");
+      $("#searchInput" ).addClass( "d-none" );
+      $("tbody").children().remove();
+};
+};
 
     // getBooksByAuthor(authorName)
     // Purpose: Finds all books where the author’s name partially or completely matches
@@ -243,11 +339,11 @@ library.prototype.getBookByTitle = function (title) {
           if (this.allBooks[i].author.indexOf(author)  !==-1) {
             // authorsBooks[i] = this.allBooks[i];
              authorsBooks.push(this.allBooks[i]);
-          }
+          };
 
-        }
+        };
         return authorsBooks;
-    }
+    };
 
     // getAuthors()
     // Purpose: Find the distinct authors’ names from all books in your library
@@ -276,7 +372,7 @@ library.prototype.getRandomAuthorName = function () {
     return null;
   }
   return this.allBooks[Math.floor(Math.random() * this.allBooks.length)].author;
-}
+};
 
 // Add a more robust search function to your app to allow you to filter by one or more book
 // properties
@@ -297,79 +393,21 @@ library.prototype.getBookByAuthTitle = function (title, author) {
     }
     return titleBooks;
 
-}
+};
 //function for main search input
 library.prototype.searchInputText = function () {
-  var mySearchValue = $("#textInput").val();
-  var mySearchLabel = $("#selectLabel").text();
+  var MysearchInput = this.$mySearchInput.val();
+  var MySearchLabel = this.$mySearchLabel.text();
+  this.evalSearchVal();
+  this.initInput();
+};
+library.prototype.initInput = function () {
   $("#textInput").val("");
   $("#selectLabel").text("");
   $("#compMsg" ).addClass( "d-none" );
-    switch (mySearchLabel) {
-  case "enter book title": //label for title search
-    var titleResults = this.getBookByTitle(mySearchValue);
-    $("#searchInput" ).addClass( "d-none" );
-    document.getElementById("textInput").value="";
-    document.getElementById("selectFunction").value="0";
-    $("tbody").children().remove();
-    for(var i=0; i < titleResults.length; i++){
-      this.renderRow(i, titleResults[i]);
-    };
-    break;
-  case "enter title": //label for title to remove
-    if (this.removeBookByTitle(mySearchValue)) {
-      $("#searchInput" ).addClass( "d-none" );
-      // document.getElementById("results").innerHTML = "Title " + mySearchValue + " removed";
-      document.getElementById("textInput").value="";
-      document.getElementById("selectFunction").value="0";
-      $("#compMsg").removeClass("d-none");
-      $("#compMsg").text( "Title " + mySearchValue + " removed");
-      this.renderTable();
-      this.setLib();
-      // document.getElementById("compMsg").innerHTML = "";
-    }    else {
-      $("#compMsg").text("not found");
-      $("#compMsg" ).removeClass( "d-none" );
-      $("#selectLabel").text("enter title");
-    }
-    // target.innerHTML = '<li>' + titleResults.join('</li><li>') + '</li>';
-    break;
-  case "enter authors full or partial name": //label for title search by author
-    var titleResults = this.getBooksByAuthor(mySearchValue);
-    // if (this.getBooksByAuthor(mySearchValue)) {
-      $("#textInput").val();
-      $("#selectFunction").val("0");
-      $("#searchInput" ).addClass( "d-none" );
-      $("tbody").children().remove();
-      if ((titleResults).length > 0) {
-        for(var i=0; i < titleResults.length; i++){
-          this.renderRow(i, titleResults[i]);
-        };
-      } else {
-        alert("you are kinda fucked");
-      };
-
-    break;
-  case "enter full author to be removed": //label for title search by author
-    var titleResults = this.removeBookByAuthor(mySearchValue);
-    document.getElementById("results").innerHTML = "";
-    document.getElementById("textInput").value="";
-    document.getElementById("selectFunction").value="0";
-    $("#searchInput" ).addClass( "d-none" );
-    $("#compMsg" ).removeClass( "d-none" );
-    this.renderTable();
-    this.setLib();
-    // target.innerHTML = '<li>' + titleResults.join('</li><li>') + '</li>';
-    break;
-
-  default:
-        document.getElementById("results").innerHTML = "please make a selection";
-        break;
-      };
-  };
-
+}
 library.prototype.choiceSelect = function (myValue) {
-  var myValue = document.getElementById("selectFunction").value;
+  var myValue = $("#selectFunction").val();
   $("#compMsg" ).addClass( "d-none" );
   if (myValue !== "1") {
     $("#inputTitleData" ).addClass( "d-none" );
@@ -377,7 +415,8 @@ library.prototype.choiceSelect = function (myValue) {
 
   switch (myValue) {
     case "0":
-        document.getElementById("results").innerHTML = "no selection made";
+        $("#compMsg").val("no selection made");
+        $("#compMsg" ).removeClass( "d-none" );
         break;
     case "1":     //add a book
         console.log($("#inputTitleData").class);
@@ -426,16 +465,95 @@ library.prototype.choiceSelect = function (myValue) {
         $("#selectLabel").text("enter full author to be removed");
         break;
     default:
-        document.getElementById("results").innerHTML = "please make a selection";
+        break;
       };
   };
+
+  library.prototype.evalSearchVal = function () {
+  switch (this.$mySearchLabel.text()) {
+    case "enter book title": //label for title search
+      if (this.getBookByTitle(this.$mySearchInput.val())) {
+        break
+      } else {
+        break
+      };
+      return true;   //case "4":    //get book by title
+      case "enter title": //label for title to remove  case "2"
+      this.removeByTitle(this.$mySearchInput.val());
+      return true;
+    case "enter authors full or partial name": //label for title search by author
+      this.searchByAuthor(this.$mySearchInput.val());
+      return true;
+    case "enter full author to be removed": //label for title search by author
+      this.removeAllAuthBooks(this.$mySearchInput.val());
+      break;
+    default:
+    console.log("nothing found in evalsearch");
+      return false;
+  };
+};
+
+library.prototype.removeByTitle = function () {
+    if (this.removeBookByTitle(this.$mySearchInput.val())) {
+      $("#searchInput" ).addClass( "d-none" );
+      // document.getElementById("results").innerHTML = "Title " + this.$mySearchInput + " removed";
+      // document.getElementById("textInput").value="";
+
+      document.getElementById("selectFunction").value="0";
+      $("#compMsg").removeClass("d-none");
+      $("#compMsg").text( "Title " + this.$mySearchInput.val() + " removed");
+      this.renderTable();
+      this.setLib();
+      // document.getElementById("compMsg").innerHTML = "";
+    }    else {
+      $("#compMsg").text("not found");
+      $("#compMsg" ).removeClass( "d-none" );
+      $("#selectLabel").text("enter title");
+    }
+    // target.innerHTML = '<li>' + titleResults.join('</li><li>') + '</li>';
+    return true;
+
+};
+  library.prototype.searchByAuthor = function () {
+    var titleResults = this.getBooksByAuthor(this.$mySearchInput.val());
+    // if (this.getBooksByAuthor(this.$mySearchInput.val())) {
+      $("#textInput").val();
+      $("#selectFunction").val("0");
+      $("#searchInput" ).addClass( "d-none" );
+      $("tbody").children().remove();
+      if ((titleResults).length > 0) {
+        for(var i=0; i < titleResults.length; i++){
+          this.renderRow(i, titleResults[i]);
+        };
+      } else {
+        alert("you are kinda fucked");
+        return false;
+      };
+
+    return true;
+  };
+
+  library.prototype.removeAllAuthBooks = function () {
+    var titleResults = this.removeBookByAuthor(this.$mySearchInput.val());
+    document.getElementById("results").innerHTML = "";
+    document.getElementById("textInput").value="";
+    document.getElementById("selectFunction").value="0";
+    $("#searchInput" ).addClass( "d-none" );
+    $("#compMsg" ).removeClass( "d-none" );
+    this.renderTable();
+    this.setLib();
+    // target.innerHTML = '<li>' + titleResults.join('</li><li>') + '</li>';
+    return;
+  };
+
 
   library.prototype.addABook = function () {
     var myTitle = $("#bookTitleInput1").val();
     var myAuth = $("#bookAuthorInput1").val();
     var myPages = $("#bookNumPageInput1").val();
     var myDate = $("#bookPubDateInput1").val();
-    var newTitle = new Book(myTitle, myAuth, myPages ,  myDate);
+    var myBookImage = $("#bookUrlInput1").val();
+    var newTitle = new Book(myTitle, myAuth, myPages ,  myDate, myBookImage);
     $("#compMsg").addClass("d-none");
     $("#compMsg").val("");
 
@@ -447,6 +565,7 @@ library.prototype.choiceSelect = function (myValue) {
       $("#bookAuthorInput1").val("");
       $("#bookNumPageInput1").val("");
       $("#bookPubDateInput1").val("");
+      $("#bookUrlInput1").val("");
 
       // below will display new title in list
       this.renderTable();
@@ -458,8 +577,4 @@ library.prototype.choiceSelect = function (myValue) {
       $("#compMsg").removeClass("d-none");
       $("#compMsg").text("title already in library");
     }
-};
-
-library.prototype.display_array = function () {
-    //  for future use
 };

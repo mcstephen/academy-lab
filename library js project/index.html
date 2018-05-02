@@ -19,7 +19,7 @@
   <div "id=wrapper" class="container">
  <div class="header clearfix">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-      <div class="container">
+      <div class="container w-100">
         <a class="navbar-brand" href="#">js 201 library project</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -136,7 +136,7 @@
                 <h5 class="card-title">Featured Book</h5>
                 <p class="card-text" id="showRecInfo">Title and author info</p>
 
-                <a href="#" id="randomBtn" class="btn btn-primary">Feeling Lucky?</a>
+                <a href="javascript:void(0)" id="randomBtn" class="btn btn-primary">Feeling Lucky?</a>
             </div>
         </div>
             <button id="btn0" class="d-none" type="button" onclick="gLib.addAllBooks()">load all books</button>
@@ -181,13 +181,17 @@
                     </div>
                     <div class="form-group mr-5">
                         <label for="bookNumPageInput1">number of pages</label>
-                        <input type="number" class="form-control col-sm" id="bookNumPageInput1" placeholder="1234">
+                        <input type="number" class="form-control col-sm" id="bookNumPageInput1" placeholder="enter pages">
                     </div>
                     <div class="form-group">
                         <label for="bookPubDateInput1">title publish date</label>
                         <input type="date" class="form-control" id="bookPubDateInput1" placeholder="mm/dd/yy">
                         </>
-                         <!-- onclick="gLib.addABook()" -->
+                    </div>
+                    <div class="form-group">
+                        <label for="bookUrlInput1">title image</label>
+                        <input type="text" class="form-control" id="bookUrlInput1" placeholder="a picture">
+                        </>
                         <button id="addButton" type="button">add book</button>
                     </div>
                 </div>
@@ -199,9 +203,9 @@
                   <thead class="thead-dark">
                     <tr>
                       <th scope="col">#</th>
-                      <th scope="col">title</th>
-                      <th scope="col">authors</th>
-                      <th scope="col">pages</th>
+                      <th id="sortTitle" scope="col">title <i class="down"></th>
+                      <th id="sortAuth" scope="col">authors <i class="down"></th>
+                      <th id="sortPages" scope="col">pages <i class="down"></th>
                       <!-- <th scope="col">image</th> -->
                       <th scope="col">remove</th>
                     </tr>
@@ -219,12 +223,12 @@
             </div>
             </form>
             <!-- jQuery first, then Tether, then Bootstrap JS. -->
-
+            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
             <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+            <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.0/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
-            <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-            <script src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/absolute.js"></script>
+            <!-- <script src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/absolute.js"></script> -->
             <!-- <script src="js/jquery.js" charset="utf-8"></script> -->
             <script src="js/script.js" charset="utf-8"></script>
             <!-- <script src="js/jquery.tablesorter.js" charset="utf-8"></script> -->

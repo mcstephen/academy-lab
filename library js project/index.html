@@ -57,32 +57,31 @@
        </li>
      </ul>
    </nav> -->
-   <h3 class="text-muted"></h3>
+   <!-- <h3 class="text-muted"></h3> -->
  </div>
  <!-- Button trigger modal -->
-  <button id="modalBtn" type="button" class="btn btn-light img-card" data-toggle="modal" data-target="#yodalModalLong" data-html="true"  src="" </b>">
-    author modal
-  </button>
    <!-- Modal -->
-   <div class="modal" id="yodalModalLong" tabindex="-1" role="dialog" aria-labelledby="yodalModalLong" aria-hidden="true">
+   <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
      <div class="modal-dialog" role="document">
        <div class="modal-content">
          <div class="modal-header">
-           <h5 class="modal-title" id="yodalModalLong">Modal title</h5>
+           <h5 class="modal-title" id="modalLabel">Modal Title</h5>
            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <!-- <span aria-hidden="true">&times;</span> -->
+             <span aria-hidden="true">×</span>
            </button>
          </div>
          <div class="modal-body">
-           <p id="myAuthors"></p>
+           <ul id="ulAuthors">
+           </ul>
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-           <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+           <button type="button" class="btn btn-primary">Save changes</button>
          </div>
        </div>
      </div>
    </div>
+
     <div class="mainArea m-5">
           <h1 class="text-center bg-dark">Coming Soon</h1>
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
@@ -145,7 +144,7 @@
                         <option value="3">book recommendation</option>
                         <option value="4">get book(s) by title</option>
                         <option value="5">get books by author</option>
-                        <option value="6" data-toggle="modal" data-target="#yodalModalLong">get authors</option>
+                        <option value="6" data-toggle="modal" data-target="#exampleModal">get authors</option>
                         <option value="7">get random author</option>
                         <option value="8">burn books by author</option>
 

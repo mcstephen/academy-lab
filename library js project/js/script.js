@@ -356,15 +356,19 @@ library.prototype.getBookByTitle = function (title) {
     // Return: array of strings the names
 
     library.prototype.getAuthors = function () {
-      authors = [];
+      var authors = [];
+      $("#ulAuthors").children().remove();
       for (var i=0; i<this.allBooks.length; i++) {
         if (authors.indexOf(this.allBooks[i].author) ===-1) {
             // authors[iu] = (this.allBooks[i].author);
             authors.push(this.allBooks[i].author);
           }
-        }
-        $("#myAuthors").text(authors);
-        $("#myAuthors").modal({show: true});
+        };
+        for (var i=0; i<authors.length; i++) {
+          $("#ulAuthors").append("<li class='font-weight-bold'>"+"<a href='javascript:void()'>" + authors[i] + "</a>"+"</li>");
+        };
+        $("#modalLabel").text("Authors");
+        $("#exampleModal").modal({show: true});
       return authors;
   };
 
@@ -425,7 +429,7 @@ library.prototype.choiceSelect = function (myValue) {
         $("#compMsg" ).removeClass( "d-none" );
         break;
     case "1":     //add a book
-        console.log($("#inputTitleData").class);
+        // console.log($("#inputTitleData").class);
         $("#inputTitleData" ).removeClass( "d-none" );
         $("#searchInput" ).addClass( "d-none" );
         $("#selectLabel").text("")
@@ -460,6 +464,7 @@ library.prototype.choiceSelect = function (myValue) {
         this.getAuthors();
         // $("#myAuthors").text(myAuthorsRet);
         // $("#myAuthors").modal({show: true});
+          $("#selectFunction").val("0");
         break;
     case "7":    //get random author's books
         $("#searchInput" ).addClass( "d-none" );

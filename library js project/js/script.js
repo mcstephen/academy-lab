@@ -33,8 +33,9 @@ library.prototype._bindMyEvents = function() {
   $("#modalBtn").on("click", $.proxy(this.getAuthors, this));
 //   $("#image").on("mouseover", $.proxy(this.popImage, this);
 //   $("#image").on("mouseout", $.proxy(this.popImage, this);
-//
-//
+  $(".bookTitle").on("click", $.proxy(this.coverHover, this));
+
+
 //   library.prototype.popImage = function() {
 //     this.allBooks(this.$($0).data("id"));
 //                            $("#pop-up").show();
@@ -52,7 +53,6 @@ library.prototype._handleMyEvent = function(e){
 };
 
 library.prototype._handleSortTitle = function() {
-  debugger
   this.allBooks.sort(function (a,b) {
     var titleA = a.title.toUpperCase();
     var titleB = b.title.toUpperCase();
@@ -106,15 +106,20 @@ library.prototype._handleSortPages = function() {
 //   this.renderTable();
 // };
 
+library.prototype.coverHover = function () {
+
+  // $('#modalBtn').tooltip({content: '<img src='+"http://bento.cdn.pbs.org/hostedbento-prod/filer_public/gar-phase-2/assets/catch-22.jpg"+ '/>' });
+$( ".bookTitle" ).tooltip({ content: '<img src="http://icdn.pro/images/fr/a/v/avatar-barbe-brun-homme-utilisateur-icone-9665-128.png"/>' });
+};
+
 library.prototype.renderTable = function(){
   $("tbody").children().remove();
   for(var i=0; i < this.allBooks.length; i++){
     this.renderRow(i, this.allBooks[i]);
   }
 };
-
 library.prototype.renderRow = function(index, book){
-  $("table tbody").append("<tr data-id='"+index+"'><th scope='row'>"+index+"</th><td>"+book.title+"</td><td class='auth'>"+book.author+"</td><td>"+book.numPages+"</td><td class='delete'>X</td></tr>");
+  $("table tbody").append("<tr data-id='"+index+"'><th scope='row'>"+index+"</th><td class='bookTitle'>"+book.title+"</td><td class='auth'>"+book.author+"</td><td>"+book.numPages+"</td><td class='delete'>X</td><td><img class='img-pop' src='"+book.bookImage+"'></td></tr>");
 };
 
   library.prototype.myInitializationMethod = function () {
@@ -126,6 +131,7 @@ library.prototype.renderRow = function(index, book){
     // $("#myTable").tablesorter();
     this._bindMyEvents();
     this.getLocStoLib();
+    $('[data-toggle="tooltip"]').tooltip();
     // $(".table").DataTable(
     //   {
     //     "order": [[ 2, "desc" ]]
@@ -176,13 +182,13 @@ var Book = function (title, author, numPages, pubDate, bookImage){
   this.bookImage = bookImage;
 };
 
-var gWap = new Book("War and Peace", "Leo Tolstoy", 1296, "01/01/1869", "src=img/war-and-peace.jpg" );
+var gWap = new Book("War and Peace", "Leo Tolstoy", 1296, "01/01/1869", "img/war-and-peace.jpg" );
 var gTheBible = new Book("The Bible", "Various authors", 1200, "January 1, 2001");
-var gCatcher = new Book("Catcher in the Rye", "JD Salenger", 240, "January 2001");
-var gGatsby = new Book("The Great Gatsby", "F. Scott Fitzgerald", 256, "January 2001");
+var gCatcher = new Book("Catcher in the Rye", "JD Salenger", 240, "January 1, 2001", "img/the-catcher-in-the-rye.jpg");
+var gGatsby = new Book("The Great Gatsby", "F. Scott Fitzgerald", 256, "January 1, 2001", "img/the-great-gatsby.jpg");
 var gHuck = new Book("The Adventures of Huckleberry Finn", "Mark Twain", 366, "December 10, 1884");
 var gHam = new Book("Hamlet", "Bill shakespeare", 1200, "January 1599");
-var gMoby = new Book("Moby Dick", "Herman Melville", 378, "October 18, 1851");
+var gMoby = new Book("Moby Dick", "Herman Melville", 378, "October 18, 1851", "img/moby-dick.jpg");
 var gMoby1 = new Book("Moby Dick1", "Herman Melville", 378, "October 18, 1851");
 var gMoby2 = new Book("Moby Dick2", "Herman Melville", 378, "October 18, 1951");
 var gMoby3 = new Book("Moby Dick3", "Herman Melville", 378, "October 18, 1851");
@@ -451,9 +457,9 @@ library.prototype.choiceSelect = function (myValue) {
         break;
     case "6":    //get authors list
         $("#searchInput" ).addClass( "d-none" );
-        var myAuthorsRet =  this.getAuthors();
-        $("#myAuthors").text(myAuthorsRet);
-        $("#myAuthors").modal({show: true});
+        this.getAuthors();
+        // $("#myAuthors").text(myAuthorsRet);
+        // $("#myAuthors").modal({show: true});
         break;
     case "7":    //get random author's books
         $("#searchInput" ).addClass( "d-none" );

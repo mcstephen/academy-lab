@@ -8,7 +8,7 @@
     <title>JS Jquery v3</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"> -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -60,37 +60,31 @@
    <h3 class="text-muted"></h3>
  </div>
  <!-- Button trigger modal -->
-  <button id="modalBtn" type="button" class="btn btn-light" data-toggle="modal" data-target="#yodalModalLong">
+  <button id="modalBtn" type="button" class="btn btn-light img-card" data-toggle="modal" data-target="#yodalModalLong" data-html="true"  src="" </b>">
     author modal
   </button>
    <!-- Modal -->
-   <div class="modal fade" id="yodalModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+   <div class="modal" id="yodalModalLong" tabindex="-1" role="dialog" aria-labelledby="yodalModalLong" aria-hidden="true">
      <div class="modal-dialog" role="document">
        <div class="modal-content">
          <div class="modal-header">
-           <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+           <h5 class="modal-title" id="yodalModalLong">Modal title</h5>
            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-             <span aria-hidden="true">&times;</span>
+             <!-- <span aria-hidden="true">&times;</span> -->
            </button>
          </div>
          <div class="modal-body">
-           <p id="myAuthors">fghfghgfhgfh</p>
+           <p id="myAuthors"></p>
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-           <button type="button" class="btn btn-primary">Save changes</button>
+           <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
          </div>
        </div>
      </div>
    </div>
- <!-- <div class="jumbotron">
-   <h1 class="display-3">JS 201 Project</h1>
-   <p class="lead"></p>
-   <p><a class="btn btn-lg btn-success d-none" href="#" role="button">do not use</a></p>
- </div> -->
-
     <div class="mainArea m-5">
-          <h1 class="text-center bg-dark">Staff Favorites</h1>
+          <h1 class="text-center bg-dark">Coming Soon</h1>
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -111,7 +105,7 @@
             <img class="d-block w-50" src="img/the-hitchhikers-guide-to-the-galaxy.jpg" alt="Third slide">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-50" src="img/atlas-shrugged.jpg" alt=" slide">
+            <img class="d-block w-50" src="img/atlas-shrugged.jpg" alt="OH NOSE!!!!!">
           </div>
           <div class="carousel-item">
             <img class="d-block w-50" src="img/catch-22.jpg" alt=" slide">
@@ -223,10 +217,11 @@
             </div>
             </form>
             <!-- jQuery first, then Tether, then Bootstrap JS. -->
-            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+            <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
             <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
             <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.0/dist/js/bootstrap.bundle.min.js"  crossorigin="anonymous"></script>
             <!-- <script src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/absolute.js"></script> -->
             <!-- <script src="js/jquery.js" charset="utf-8"></script> -->

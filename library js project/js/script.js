@@ -36,7 +36,7 @@ library.prototype._bindMyEvents = function() {
 //   $("#image").on("mouseout", $.proxy(this.popImage, this);
   $(".bookTitle").on("click", $.proxy(this.coverHover, this));
 
-
+//following function is done in css
 //   library.prototype.popImage = function() {
 //     this.allBooks(this.$($0).data("id"));
 //                            $("#pop-up").show();
@@ -417,7 +417,7 @@ library.prototype.searchInputText = function () {
 library.prototype.initInput = function () {
   $("#textInput").val("");
   $("#selectLabel").text("");
-  $("#compMsg" ).addClass( "d-none" );
+  // $("#compMsg" ).addClass( "d-none" );
 }
 library.prototype.choiceSelect = function (myValue) {
   var myValue = $("#selectFunction").val();
@@ -510,9 +510,6 @@ library.prototype.choiceSelect = function (myValue) {
 library.prototype.removeByTitle = function () {
     if (this.removeBookByTitle(this.$mySearchInput.val())) {
       $("#searchInput" ).addClass( "d-none" );
-      // document.getElementById("results").innerHTML = "Title " + this.$mySearchInput + " removed";
-      // document.getElementById("textInput").value="";
-
       document.getElementById("selectFunction").value="0";
       $("#compMsg").removeClass("d-none");
       $("#compMsg").text( "Title " + this.$mySearchInput.val() + " removed");

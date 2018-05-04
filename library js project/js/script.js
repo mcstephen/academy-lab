@@ -22,6 +22,7 @@ var library = function (stoKey) {
 
 library.prototype._bindMyEvents = function() {
   $("#MyTable").on("click", ".delete", $.proxy(this._handleMyEvent, this)); //delegation
+  // $("#MyTable").on("click", ".bookTitle", $.proxy(this._titleClick, this)); //delegation
   // $(".show-auths").on("click", $.proxy(this.showauthors, this));
   $("#MyTable").on("click", "#sortTitle", $.proxy(this._handleSortTitle, this)); //delegation
   $("#MyTable").on("click", "#sortAuth", $.proxy(this._handleSortAuth, this)); //delegation
@@ -288,9 +289,11 @@ library.prototype.getRandomBook = function () {
   $("#showRecInfo").css( "font-style", "italic");
   var randomTitle = "title: " + this.allBooks[randomNumberBetween0andlen].title +
                                                         "  author: " + this.allBooks[randomNumberBetween0andlen].author;
-  $(".card-text").val(randomTitle);
+  $("#showRecInfo").text(randomTitle);
+  var tempSrcUrl = this.allBooks[randomNumberBetween0andlen].bookImage;
+  $(".card-img-top").attr("src", this.allBooks[randomNumberBetween0andlen].bookImage);
 
-  selectFunction.selectIndex = "0"
+  $("#selectFunction").val("0");
   return this.allBooks[randomNumberBetween0andlen];
 };
 
@@ -365,7 +368,7 @@ library.prototype.getBookByTitle = function (title) {
           }
         };
         for (var i=0; i<authors.length; i++) {
-          $("#ulAuthors").append("<li class='font-weight-bold'>"+"<a href='javascript:void()'>" + authors[i] + "</a>"+"</li>");
+          $("#ulAuthors").append("<li class='font-weight-bold'>"+"<a href='javascript:this.searchByAuthor(authors[i])'>" + authors[i] + "</a>"+"</li>");
         };
         $("#modalLabel").text("Authors");
         $("#exampleModal").modal({show: true});

@@ -12,11 +12,12 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<header class="py-5 bg-image-full" style="background-image: url('https://unsplash.it/1900/1080?image=1076');">
-  <img class="img-fluid d-block mx-auto" src="https://pbs.twimg.com/card_img/989134348237594624/67i-4AJw?format=jpg&name=386x202" alt="">
+<header class="py-5 bg-image-full" style="background-image: url('https://static.dezeen.com/uploads/2016/04/national-library-israel-david-herzog-de-meuron-architects-cultural-architecture-news_dezeen_936_3.jpg');">
+  <!-- <header class="py-5 bg-image-full" style="background-image: url('img/background-hero.png');"></header> -->
+  <img class="img-fluid d-block mx-auto" src="https://s3-us-west-2.amazonaws.com/newtg/img/tgTextWhiteLogoGreenAndGray10.png" alt="">
 </header>
 <body>
-  <div "id=wrapper" class="container">
+  <div "id=wrapper" class="container-fluid">
  <div class="header clearfix">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container w-100">
@@ -70,13 +71,13 @@
              <span aria-hidden="true">×</span>
            </button>
          </div>
-         <div class="modal-body">
+         <div class="modal-body" id="authorModal">
            <ul id="ulAuthors">
            </ul>
          </div>
          <div class="modal-footer">
            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-           <button type="button" class="btn btn-primary">Save changes</button>
+           <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
          </div>
        </div>
      </div>
@@ -120,21 +121,46 @@
           </div>
         </div>
       </div>
-        <h3></h3>
-        <div class="row mt-5 mb-5">
-        <div class="card col-md-2" style="width: 18rem;">
+<!-- Button trigger modal -->
+<div class="">
+  <button type="button"  id="randomBtn" class="btn btn-primary mt-5 mr-5" data-toggle="modal" data-target="#randomCard">
+    Click Here for recommended books
+  </button>
+  <!-- <a href="javascript:void(0)" id="randomBtn" class="btn btn-primary">Feeling Lucky?</a> -->
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="randomCard" tabindex="-1" role="dialog" aria-labelledby="randomCardLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="randomCardLabel">Suggested book</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card col-md mx-auto" style="width: 20rem;">
             <!-- <img class="card-img-top img-fluid" src="http://bento.cdn.pbs.org/hostedbento-prod/filer_public/gar-phase-2/assets/1984.jpg" alt="Card image cap"> -->
             <img class="card-img-top img-fluid" src="http://via.placeholder.com/410x629" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">Featured Book</h5>
                 <p id="showRecInfo">Title and author info</p>
 
-                <a href="javascript:void(0)" id="randomBtn" class="btn btn-primary">Feeling Lucky?</a>
             </div>
         </div>
-            <button id="btn0" class="d-none" type="button" onclick="gLib.addAllBooks()">load all books</button>
-            <form>
-                <div class="form-group ml-5 mr-5">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+        <div class="mt-5 mb-5">
+            <form w-25>
+                <div class="form-group ml-5 mr-5 w-25">
                     <label for="selectFunction">Select from list</label>
                      <!-- onchange="gLib.choiceSelect() -->
                     <select class="form-control" id="selectFunction">
@@ -198,13 +224,12 @@
                       <th scope="col">#</th>
                       <th id="sortTitle" scope="col">title <i class="down"></th>
                       <th id="sortAuth" scope="col">authors <i class="down"></th>
-                      <th id="sortPages" scope="col">pages <i class="down"></th>
+                      <th class="text-center" id="sortPages" scope="col">pages <i class="down"></th>
                       <!-- <th scope="col">image</th> -->
-                      <th scope="col">remove</th>
+                      <th class="text-center" scope="col">recycle</th>
                     </tr>
                   </thead>
                   <tbody>
-
                   </tbody>
               </table>
 

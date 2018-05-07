@@ -32,6 +32,7 @@ library.prototype._bindMyEvents = function() {
   $("#selectFunction").on("change", $.proxy(this.choiceSelect, this));
   $("#randomBtn").on("click", $.proxy(this.getRandomBook, this));
   $("#modalBtn").on("click", $.proxy(this.getAuthors, this));
+  $("#authorModal").on("click", ".authorLi",  $.proxy(this._handleAuthorClick, this));
 //   $("#image").on("mouseover", $.proxy(this.popImage, this);
 //   $("#image").on("mouseout", $.proxy(this.popImage, this);
   $(".bookTitle").on("click", $.proxy(this.coverHover, this));
@@ -46,11 +47,30 @@ library.prototype._bindMyEvents = function() {
 //                          });
 };
 
+library.prototype._handleAuthorClick = function(e){
+  var titleResults = this.getBooksByAuthor($(e.currentTarget).text());
+  // var result = $(e.currentTarget).text();
+  // console.log(result);
+  // console.log(event.target.innerText);
+    location.reload();
+  // this.renderTable();
+  $("#exampleModal").modal({hide: true});
+  if ((titleResults).length > 0) {
+    for(var i=0; i < titleResults.length; i++){
+      this.renderRow(i, titleResults[i]);
+    };
+  } else {
+    alert("we aint got no books");
+    return false;
+  };
+};
+
 library.prototype._handleMyEvent = function(e){
   var $tr = $(e.currentTarget).parent("tr");
   this.allBooks.splice($tr.attr("data-id"), 1);
   $tr.remove();
   this.setLib();
+  this.renderTable();
 };
 
 library.prototype._handleSortTitle = function() {
@@ -120,7 +140,7 @@ library.prototype.renderTable = function(){
   }
 };
 library.prototype.renderRow = function(index, book){
-  $("table tbody").append("<tr data-id='"+index+"'><th scope='row'>"+index+"</th><td class='bookTitle'>"+book.title+"</td><td class='auth'>"+book.author+"</td><td>"+book.numPages+"</td><td class='delete'>X</td><td><img class='img-pop' src='"+book.bookImage+"'></td></tr>");
+  $("table tbody").append("<tr data-id='"+index+"'><th scope='row'>"+index+"</th><td class='bookTitle'>"+book.title+"</td><td class='auth'>"+book.author+"</td><td>"+book.numPages+"</td><td class='delete text-center'>&#9851</td><td><img class='img-pop' src='"+book.bookImage+"'></td></tr>");
 };
 
   library.prototype.myInitializationMethod = function () {
@@ -283,6 +303,7 @@ library.prototype.randomEvent = function () {
 
 library.prototype.getRandomBook = function () {
   if (this.allBooks.length == 0) {
+    $("#showRecInfo").text("no books available due to loss of funding");
     return false;
   };
   var randomNumberBetween0andlen = Math.floor(Math.random() * this.allBooks.length);
@@ -341,10 +362,10 @@ library.prototype.getBookByTitle = function (title) {
 
     library.prototype.getBooksByAuthor = function (author) {
       var authorsBooks = [];
-      for (var i= this.allBooks.length - 1; i > -1; --i) {
-          if (this.allBooks[i].author === author) {
-            authorsBooks[i] = this.allBooks[i];
-          }
+      for (var i=0; i < this.allBooks.length; i++) {
+          // if (this.allBooks[i].author === author) {
+          //   authorsBooks[i] = this.allBooks[i];
+          // }
           if (this.allBooks[i].author.indexOf(author)  !==-1) {
             // authorsBooks[i] = this.allBooks[i];
              authorsBooks.push(this.allBooks[i]);
@@ -368,7 +389,7 @@ library.prototype.getBookByTitle = function (title) {
           }
         };
         for (var i=0; i<authors.length; i++) {
-          $("#ulAuthors").append("<li class='font-weight-bold'>"+"<a href='javascript:this.searchByAuthor(authors[i])'>" + authors[i] + "</a>"+"</li>");
+          $("#ulAuthors").append("<li class='font-weight-bold authorLi'>"+ authors[i] + "</li>");
         };
         $("#modalLabel").text("Authors");
         $("#exampleModal").modal({show: true});
@@ -422,9 +443,9 @@ library.prototype.initInput = function () {
 library.prototype.choiceSelect = function (myValue) {
   var myValue = $("#selectFunction").val();
   $("#compMsg" ).addClass( "d-none" );
-  if (myValue !== "1") {
-    $("#inputTitleData" ).addClass( "d-none" );
-  }
+  // if (myValue !== "1") {
+  //   $("#inputTitleData" ).addClass( "d-none" );
+  // }
 
   switch (myValue) {
     case "0":

@@ -17,7 +17,7 @@
   <img class="img-fluid d-block mx-auto" src="https://s3-us-west-2.amazonaws.com/newtg/img/tgTextWhiteLogoGreenAndGray10.png" alt="">
 </header>
 <body>
-  <div "id=wrapper" class="container-fluid">
+<div "id=wrapper" class="container-fluid">
  <div class="header clearfix">
    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container w-100">
@@ -45,6 +45,7 @@
         </div>
       </div>
     </nav>
+    </div>
    <!-- <nav>
      <ul class="nav nav-pills float-right">
        <li class="nav-item">
@@ -59,7 +60,6 @@
      </ul>
    </nav> -->
    <!-- <h3 class="text-muted"></h3> -->
- </div>
  <!-- Button trigger modal -->
    <!-- Modal -->
    <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
@@ -128,7 +128,7 @@
   </button>
   <!-- <a href="javascript:void(0)" id="randomBtn" class="btn btn-primary">Feeling Lucky?</a> -->
 </div>
-
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="randomCard" tabindex="-1" role="dialog" aria-labelledby="randomCardLabel" aria-hidden="true">
@@ -188,34 +188,34 @@
                     </div>
                 </div>
             </form>
+        </div>
+        <div>
             <form id="inputTitleData" class="row d-none">
-                <div class="d-inline">
-                    <div class="form-group">
-                        <label for="bookTitleInput1">book title</label>
-                        <input type="text" class="form-control" id="bookTitleInput1" placeholder="enter full title">
-                    </div>
-                    <div class="form-group mr-5">
-                        <label for="bookAuthorInput1">author name</label>
-                        <input type="text" class="form-control col-md" id="bookAuthorInput1" placeholder="enter author name">
-                    </div>
-                    <div class="form-group mr-5">
-                        <label for="bookNumPageInput1">number of pages</label>
-                        <input type="number" class="form-control col-sm" id="bookNumPageInput1" placeholder="enter pages">
-                    </div>
-                    <div class="form-group">
-                        <label for="bookPubDateInput1">title publish date</label>
-                        <input type="date" class="form-control" id="bookPubDateInput1" placeholder="mm/dd/yy">
-                        </>
-                    </div>
-                    <div class="form-group">
-                        <label for="bookUrlInput1">title image</label>
-                        <input type="text" class="form-control" id="bookUrlInput1" placeholder="a picture">
-                        </>
-                        <button id="addButton" type="button">add book</button>
-                    </div>
-                </div>
-            </form>
-          </div>
+              <div class="d-inline">
+                  <div class="form-group">
+                      <label for="bookTitleInput1">book title</label>
+                      <input type="text" class="form-control" id="bookTitleInput1" placeholder="enter full title">
+                  </div>
+                  <div class="form-group mr-5">
+                      <label for="bookAuthorInput1">author name</label>
+                      <input type="text" class="form-control col-md" id="bookAuthorInput1" placeholder="enter author name">
+                  </div>
+                  <div class="form-group mr-5">
+                      <label for="bookNumPageInput1">number of pages</label>
+                      <input type="number" class="form-control col-sm" id="bookNumPageInput1" placeholder="enter pages">
+                  </div>
+                  <div class="form-group">
+                      <label for="bookPubDateInput1">title publish date</label>
+                      <input type="date" class="form-control" id="bookPubDateInput1" placeholder="mm/dd/yy">
+                  </div>
+                  <div class="form-group">
+                      <label for="bookUrlInput1">title image</label>
+                      <input type="text" class="form-control" id="bookUrlInput1" placeholder="a picture">
+                      <button id="addButton" type="button">add book</button>
+                  </div>
+              </div>
+          </form>
+        </div>
             <div id="tabResult">
                 <p id="results"></p>
                 <table id="MyTable" class="table table-striped">
@@ -224,7 +224,7 @@
                       <th scope="col">#</th>
                       <th id="sortTitle" scope="col">title <i class="down"></th>
                       <th id="sortAuth" scope="col">authors <i class="down"></th>
-                      <th class="text-center" id="sortPages" scope="col">pages <i class="down"></th>
+                      <th id="sortPages" scope="col">pages <i class="down"></th>
                       <!-- <th scope="col">image</th> -->
                       <th class="text-center" scope="col">recycle</th>
                     </tr>
@@ -234,12 +234,7 @@
               </table>
 
             </div>
-            <div id="myDiv">
-              <ul id="target"></ul>
-                <label for="results"></label>
-                <span
-            </div>
-            </form>
+    </div>
             <!-- jQuery first, then Tether, then Bootstrap JS. -->
             <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
             <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
@@ -252,8 +247,6 @@
             <script src="js/script.js" charset="utf-8"></script>
             <!-- <script src="js/jquery.tablesorter.js" charset="utf-8"></script> -->
 
-    </div>
-    </div>
 </body>
 
 </html>

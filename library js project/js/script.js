@@ -52,9 +52,10 @@ library.prototype._handleAuthorClick = function(e){
   // var result = $(e.currentTarget).text();
   // console.log(result);
   // console.log(event.target.innerText);
-    location.reload();
+    // location.reload();
   // this.renderTable();
-  $("#exampleModal").modal({hide: true});
+  $("#exampleModal").modal('hide');
+  $("tbody").children().remove();
   if ((titleResults).length > 0) {
     for(var i=0; i < titleResults.length; i++){
       this.renderRow(i, titleResults[i]);
@@ -140,7 +141,7 @@ library.prototype.renderTable = function(){
   }
 };
 library.prototype.renderRow = function(index, book){
-  $("table tbody").append("<tr data-id='"+index+"'><th scope='row'>"+index+"</th><td class='bookTitle'>"+book.title+"</td><td class='auth'>"+book.author+"</td><td>"+book.numPages+"</td><td class='delete text-center'>&#9851</td><td><img class='img-pop' src='"+book.bookImage+"'></td></tr>");
+  $("table tbody").append("<tr data-id='"+index+"'><th scope='row'>"+index+"</th><td class='bookTitle'>"+book.title+"</td><td class='auth'>"+book.author+"</td><td class='numPages'>"+book.numPages+"</td><td class='delete text-center'>&#9851</td><td><img class='img-pop' src='"+book.bookImage+"'></td></tr>");
 };
 
   library.prototype.myInitializationMethod = function () {

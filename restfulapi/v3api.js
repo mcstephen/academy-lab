@@ -9,10 +9,7 @@
       MeetApi_instance = this; //after instance is created assign it ti our instance
     };
 })();
-var MeetApi = function(el) {
-    this.$container = $(el);
-    this.refreshDataUrl = 'https://api.meetup.com/2/cities';
-    };
+
 $( document ).ready (function() { //Doc ready
     window.gApi = new MeetApi("gApi");
     window.gApi.init();
@@ -25,13 +22,17 @@ $( document ).ready (function() { //Doc ready
 MeetApi.prototype.init = function() {
     this.bindEvents();
     this._initVars();
+    this.refreshDataUrl = 'https://api.meetup.com/2/cities';
+    // this.$container = $(el);
+
+
     // this.getLocStoLib();
     };
 
 MeetApi.prototype._initVars = function() {
-    this.$myCountry = $("#inputCountry").val();
-    this.$myState = $("#inputState").val();
-    this.$myPages = $("#inputNumResults").val();
+    this.$myCountry = $("#inputCountry");
+    this.$myState = $("#inputState");
+    this.$myPages = $("#inputNumResults");
   };
     
 MeetApi.prototype.bindEvents = function() {
@@ -84,50 +85,45 @@ MeetApi.prototype.setLib = function() {
 
 
     MeetApi.prototype.refreshData = function() {
+      console.log("refreshData = this.allmeet===>" + this.allMeet.length)
+
         this.getApiData();
         this.markerMap();
 
     };
 MeetApi.prototype.getApiData = function() {
+  console.log("getApiData = this.allmeet===>" + this.allMeet.length)
+
     event.preventDefault();
-    this.$myCountry = $("#inputCountry").val();
-    this.$myState = $("#inputState").val();
-    this.$myPages = $("#inputNumResults").val();
+    // this.$myCountry = $("#inputCountry").val();
+    // this.$myState = $("#inputState").val();
+    // this.$myPages = $("#inputNumResults").val();
     $.ajax({
         dataType: 'jsonp',
         type:"GET",
         url:"https://api.meetup.com/2/cities",
         data: {
                 key: "6e3d5d1a5632351a3e4a274c3f66910",
-                country: this.$myCountry,
-                state: this.$myState,
-                page: this.$myPages 
+                country: this.$myCountry.val(),
+                state: this.$myState.val(),
+                page: this.$myPages.val() 
         }
-      }).done($.proxy(this._refreshDataSuccess, this)
+      }).done($.proxy(this.refreshDataSuccess, this)
       ).fail(function(){
         console.log("fail")
       });
 };
 
-    MeetApi.prototype._refreshDataSuccess = function(response) {
-    if (response){
+    MeetApi.prototype.refreshDataSuccess = function(response) {
+      console.log("refreshDataSuccess  = this.allmeet===>" + this.allMeet.length)
+
         $("tbody").children().remove();
+        this.allMeet = [];
         for(var i = 0; i <response.results.length; i++ ) {
             $("table tbody").append("<tr class='text-center'><td class='zip'>"+response.results[i].zip+"</td><td class='city'>"+response.results[i].localized_country_name+"</td><td class='city'>"+response.results[i].city+"</td><td class='ranking'>"+response.results[i].ranking+"</td><td class='state'>"+response.results[i].state+"</td><td class='mbr_count'>"+response.results[i].member_count+"</td></tr>");
             // console.log(response.results[i]);
             this.allMeet.push(response.results[i]);
-            locations.push(response.results[i]);
-
-            // this.allMeet.push(
-            //             response.results[i].country,
-            //             response.results[i].lat,
-            //             response.results[i].lon,
-            //             response.results[i].state,
-            //             response.results[i].member_count,
-            //             response.results[i].zip);
-
-        } }  else {
-            return false;}
+        } 
         this.setLib();
         };
 
@@ -152,19 +148,11 @@ MeetApi.prototype.getApiData = function() {
 
           };
           
-    locations = [];
-
-    //       var locations = function (city, state, ranking, lon, lat){
-    // this.state = state;
-    // this.city = city;
-    // this.ranking = ranking;
-    // this.lon = lon;
-    // this.lat = lat;
-
 MeetApi.prototype.markerMap = function() {
+   console.log("markerMap = this.allmeet===>" + this.allMeet.length)
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
-        center: new google.maps.LatLng(40.04999923706055, -105.20999908447266),
+        center: new google.maps.LatLng(this.allMeet[0].lat, this.allMeet[0].lon),
         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
   
@@ -172,19 +160,20 @@ MeetApi.prototype.markerMap = function() {
   
       var marker, i;
   
-      for (i = 0; i < locations.length; i++) {  
+      for (i = 0; i < this.allMeet.length; i++) {  
         marker = new google.maps.Marker({
-          position: new google.maps.LatLng(locations[i].lat, locations[i].lon),
+          position: new google.maps.LatLng(this.allMeet[i].lat, this.allMeet[i].lon),
           map: map
         });
-  
+        
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function() {
-            infowindow.setContent(locations[i][0]);
+            infowindow.setContent(this.allMeet[i][0]);
+            console.log("markerMap/setContent = this.allmeet===>" + this.allMeet.length)
+
             infowindow.open(map, marker);
           }
         })(marker, i));
       }
 };
 
-  

@@ -23,9 +23,6 @@ MeetApi.prototype.init = function() {
     this.bindEvents();
     this._initVars();
     this.refreshDataUrl = 'https://api.meetup.com/2/cities';
-    // this.$container = $(el);
-
-
     // this.getLocStoLib();
     };
 
@@ -62,7 +59,7 @@ MeetApi.prototype.setLib = function() {
   };
   MeetApi.prototype.clrLocStoLib = function() {
     localStorage.removeItem(this.stoKey);
-  }
+  };
   MeetApi.prototype.getLocStoLib = function() {
     var tempLocalSto = JSON.parse(localStorage.getItem(this.stoKey)) || [];
     for (var i=0; i<tempLocalSto.length; i++) {
@@ -124,7 +121,7 @@ MeetApi.prototype.getApiData = function() {
             // console.log(response.results[i]);
             this.allMeet.push(response.results[i]);
         } 
-        this.setLib();
+        // this.setLib();
         };
 
         // var map;

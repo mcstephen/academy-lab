@@ -1,0 +1,11 @@
+
+default: 0.452880859375ms
+ qchallenge.js:37 string: arrb6???4xxbl5???eee5 t/f=true
+ 
+default: 0.180908203125ms
+ qchallenge.js:37 string: bcc?7??ccc?3tt1??????5 t/f=true 
+default: 0.0751953125ms
+ qchallenge.js:37 string: bb6?9 			t/f=false
+ 
+default: 0.123779296875ms 
+qchallenge.js:37 string: g??7??ccc??3tt1??????5 t/f=false

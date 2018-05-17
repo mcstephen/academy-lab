@@ -68,9 +68,10 @@ library.prototype._handleAuthorClick = function(e){
 
 library.prototype._handleMyEvent = function(e){
   var $tr = $(e.currentTarget).parent("tr");
+  var idIndex = $tr.attr("data-id");
+  this.deleteBookById(idIndex);
   this.allBooks.splice($tr.attr("data-id"), 1);
   $tr.remove();
-  this.setLib();
   this.renderTable();
 };
 
@@ -134,7 +135,7 @@ library.prototype.renderTable = function(){
   }
 };
 library.prototype.renderRow = function(i, book){
-  $("table tbody").append("<tr data-id='"+this.allBooks[i]._id+"'><th scope='row'>"+" "+"</th><td class='bookTitle'>"+this.allBooks[i].title+"</td><td class='auth'>"+this.allBooks[i].author+"</td><td class='numPages'>"+this.allBooks[i].numPages+"</td><td class='delete text-center'>&#9851</td><td><img class='img-pop' src='"+"data:image/png;base64, "+this.allBooks[i].cover+"'></td></tr>");
+  $("table tbody").append("<tr data-id='"+this.allBooks[i]._id+"'><td scope='row'>"+i+"</td><td class='bookTitle'>"+this.allBooks[i].title+"</td><td class='auth'>"+this.allBooks[i].author+"</td><td class='numPages'>"+this.allBooks[i].numPages+"</td><td class='delete text-center'>&#9851</td><td><img class='img-pop' src='"+"data:image/png;base64, "+this.allBooks[i].cover+"'></td></tr>");
 
 };
 
@@ -196,7 +197,7 @@ library.prototype.postApiData = function() {
     console.log("fail")
   });
 };
-
+// below was created from postman
 // var settings = {
 //   "async": true,
 //   "crossDomain": true,
@@ -267,7 +268,8 @@ library.prototype.addBook = function (newBook) {
 library.prototype.removeBookByTitle = function (title) {
   for (var i=0; i<this.allBooks.length; i++) {
       if (this.allBooks[i].title === title) {
-        this.deleteBookByTitle(i);
+        var id = this.allBooks[i]._id;
+        this.deleteBookById(id);
         this.allBooks.splice(i, 1);
         return true;
       }
@@ -275,24 +277,15 @@ library.prototype.removeBookByTitle = function (title) {
     return false;
 };
 
-library.prototype.deleteBookByTitle = function (title) {
+library.prototype.deleteBookById = function (id) {
 
-// var settings = {
-//   "async": true,
-//   "crossDomain": true,
-//   "url": "http://localhost:3000/library",
-//   "method": "DELETE",
-//   "headers": {
-//     "Content-Type": "application/x-www-form-urlencoded",
-//     "Cache-Control": "no-cache",
-//   },
-//   "data": {
-//     _id: this.allBooks[i]._id
-//   }
-// }
-// $.ajax(settings).done(function (response) {
-//   console.log(response);
-// });
+  $.ajax({
+    dataType: 'json',
+    url:"http://127.0.0.1:3000/library/" + id,
+    type: "DELETE",
+}).done(function (response) {
+  console.log(response);
+});
 };
 
 // removeBookByAuthor(authorName)

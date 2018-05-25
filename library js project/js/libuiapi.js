@@ -22,13 +22,12 @@ var library = function (stoKey) {
 
 library.prototype._bindMyEvents = function() {
   $("#MyTable").on("click", ".delete", $.proxy(this._handleMyEvent, this)); //delegation
-  // $("#MyTable").on("click", ".bookTitle", $.proxy(this._titleClick, this)); //delegation
-  // $(".show-auths").on("click", $.proxy(this.showauthors, this));
+  $("#MyTable").on("click", ".editBtn", $.proxy(this._handleMyEditEvent, this)); //delegation
   $("#MyTable").on("click", "#sortTitle", $.proxy(this._handleSortTitle, this)); //delegation
   $("#MyTable").on("click", "#sortAuth", $.proxy(this._handleSortAuth, this)); //delegation
   $("#MyTable").on("click", "#sortPages", $.proxy(this._handleSortPages, this)); //delegation
   $("#runButton").on("click", $.proxy(this.searchInputText, this));
-  $("#addButton").on("click", $.proxy(this.addABook, this));
+  $("#addButton").on("click", $.proxy(this.doABook, this));
   $("#selectFunction").on("change", $.proxy(this.choiceSelect, this));
   $("#randomBtn").on("click", $.proxy(this.getRandomBook, this));
   $("#modalBtn").on("click", $.proxy(this.getAuthors, this));
@@ -74,6 +73,28 @@ library.prototype._handleMyEvent = function(e){
   $tr.remove();
   this.renderTable();
 };
+
+library.prototype._handleMyEditEvent = function(e){
+  var $tr = $(e.currentTarget).parent("tr");
+  var idIndex = $tr.attr("data-id");
+  $("#inputTitleData" ).removeClass( "d-none" );
+  $("#addButton").text('update');
+
+  for (var i=0; i<this.allBooks.length; i++) {
+
+  if (this.allBooks[i]._id.indexOf(idIndex)  !==-1) {
+    $("#dbID").val(this.allBooks[i]._id);
+    $("#bookTitleInput1").val(this.allBooks[i].title);
+    $("#bookAuthorInput1").val(this.allBooks[i].author);
+    $("#bookNumPageInput1").val(this.allBooks[i].numPages);
+    $("#bookPubDateInput1").val(this.allBooks[i].pubDate);
+    $("#bookUrlInput1").val(this.allBooks[i].cover);
+  } else{
+    console.log("oh nose : "+i);
+  }
+}
+};
+
 
 library.prototype._handleSortTitle = function() {
   this.allBooks.sort(function (a,b) {
@@ -135,8 +156,9 @@ library.prototype.renderTable = function(){
   }
 };
 library.prototype.renderRow = function(i, book){
-  $("table tbody").append("<tr data-id='"+this.allBooks[i]._id+"'><td scope='row'>"+i+"</td><td class='bookTitle'>"+this.allBooks[i].title+"</td><td class='auth'>"+this.allBooks[i].author+"</td><td class='numPages'>"+this.allBooks[i].numPages+"</td><td class='delete text-center'>&#9851</td><td><img class='img-pop' src='"+"data:image/png;base64, "+this.allBooks[i].cover+"'></td></tr>");
-
+  $("table tbody").append("<tr data-id='"+this.allBooks[i]._id+"'><td scope='row'>"+i+"</td> <td class='editBtn' type='button'>edit</button><td class='bookTitle'>"+this.allBooks[i].title+"</td><td class='auth'>"+this.allBooks[i].author+"</td><td class='numPages'>"+this.allBooks[i].numPages+"</td><td class='delete text-center'>&#9851</td><td><img class='img-pop' src='"+"data:image/png;base64, "+this.allBooks[i].cover+"'></td></tr>");
+  // $("table tbody").append("<tr data-id='"+this.allBooks[i]._id+"'><td scope='row'>"+i+"</td><td class='bookTitle'>"+this.allBooks[i].title+"</td><td class='auth'>"+this.allBooks[i].author+"</td><td class='numPages'>"+this.allBooks[i].numPages+"</td><td class='delete text-center'>&#9851</td><td><img class='img-pop' src='"+"data:image/png;base64, "+this.allBooks[i].cover+"'></td></tr>");
+                                                                                         
 };
 
   library.prototype.myInitializationMethod = function () {
@@ -197,26 +219,23 @@ library.prototype.postApiData = function() {
     console.log("fail")
   });
 };
-// below was created from postman
-// var settings = {
-//   "async": true,
-//   "crossDomain": true,
-//   "url": "http://localhost:3000/library",
-//   "method": "POST",
-//   "headers": {
-//     "Content-Type": "application/x-www-form-urlencoded",
-//     "Cache-Control": "no-cache",
-//     "Postman-Token": "2f7a6068-231c-4cce-b875-1aa977caf7e0"
-//   },
-//   "data": {
-
-// title: $("#bookTitleInput1").val(),
-// author: $("#bookAuthorInput1").val(),
-// numPages: $("#bookNumPageInput1").val(),
-// pubDate: $("#bookPubDateInput1").val(),
-// cover: $("#bookUrlInput1").val()
-//   }
-// }
+library.prototype.putApiData = function() {
+  $.ajax({
+    dataType: 'json',
+    type:"PUT",
+    url:"http://127.0.0.1:3000/library",
+      data: {
+        _id: $("#dbID").val(),
+         title: $("#bookTitleInput1").val(),
+         author: $("#bookAuthorInput1").val(),
+         numPages: $("#bookNumPageInput1").val(),
+         pubDate: $("#bookPubDateInput1").val(),
+         cover: $("#bookUrlInput1").val()
+      }
+    }).done(console.log("success")).fail(function(){
+    console.log("fail")
+  });
+};
 
 library.prototype._refreshDataSuccess = function(response) {
   if (response){
@@ -523,6 +542,13 @@ library.prototype.choiceSelect = function (myValue) {
         $("#textInput" ).show();
         $("#selectLabel").text("enter full author to be removed");
         break;
+    case "9":    //edit book by title
+    $("#searchInput" ).removeClass( "d-none" );
+    // $("#searchInput" ).show();
+    // document.getElementById("results").innerHTML = "please enter title to edit";
+    $("#selectLabel").text("enter book title to edit");
+    $("#textInput" ).show();
+    break;
     default:
         break;
       };
@@ -537,9 +563,17 @@ library.prototype.choiceSelect = function (myValue) {
         break
       };
       return true;   //case "4":    //get book by title
+    case "enter book title to edit": //label for title search
+    if (this.getBookByTitle(this.$mySearchInput.val())) {
+      break
+    } else {
+      break
+    };
+    return true;   //case "4":    //get book by title
       case "enter title": //label for title to remove  case "2"
       this.removeByTitle(this.$mySearchInput.val());
       return true;
+      
     case "enter authors full or partial name": //label for title search by author
       this.searchByAuthor(this.$mySearchInput.val());
       return true;
@@ -601,6 +635,24 @@ library.prototype.removeByTitle = function () {
     // target.innerHTML = '<li>' + titleResults.join('</li><li>') + '</li>';
     return;
   };
+  library.prototype.doABook = function () {
+    if ($("#addButton").text() == "update") {
+      console.log("fuck yeah!!!")
+      this.putApiData()
+        $("#textInput").val("");
+        $("#selectFunction").val("0");
+        $("#inputTitleData" ).addClass( "d-none" );
+        $("#addButton").text("add book");
+    }  
+      else {
+        this.addABook()
+      };
+      $("#bookTitleInput1").val("");
+      $("#bookAuthorInput1").val("");
+      $("#bookNumPageInput1").val("");
+      $("#bookPubDateInput1").val("");
+      $("#bookUrlInput1").val("");
+    };
 
 
   library.prototype.addABook = function () {
@@ -616,11 +668,7 @@ library.prototype.removeByTitle = function () {
 
     if (this.addBook(newTitle)  ) {
       //check is true, execute this code
-      $("#bookTitleInput1").val("");
-      $("#bookAuthorInput1").val("");
-      $("#bookNumPageInput1").val("");
-      $("#bookPubDateInput1").val("");
-      $("#bookUrlInput1").val("");
+
 
       // below will display new title in list
       // this.renderTable();

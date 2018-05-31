@@ -69,9 +69,8 @@ library.prototype._handleMyEvent = function(e){
   var $tr = $(e.currentTarget).parent("tr");
   var idIndex = $tr.attr("data-id");
   this.deleteBookById(idIndex);
-  this.allBooks.splice($tr.attr("data-id"), 1);
-  $tr.remove();
-  this.renderTable();
+  this.getApiData();
+  // $tr.remove();
 };
 
 library.prototype._handleMyEditEvent = function(e){
@@ -145,7 +144,6 @@ library.prototype._handleSortPages = function() {
 
 library.prototype.coverHover = function () {
 
-  // $('#modalBtn').tooltip({content: '<img src='+"http://bento.cdn.pbs.org/hostedbento-prod/filer_public/gar-phase-2/assets/catch-22.jpg"+ '/>' });
 $( ".bookTitle" ).tooltip({ content: '<img src="http://icdn.pro/images/fr/a/v/avatar-barbe-brun-homme-utilisateur-icone-9665-128.png"/>' });
 };
 
@@ -156,8 +154,7 @@ library.prototype.renderTable = function(){
   }
 };
 library.prototype.renderRow = function(i, book){
-  $("table tbody").append("<tr data-id='"+this.allBooks[i]._id+"'><td scope='row'>"+i+"</td> <td class='editBtn' type='button'>edit</button><td class='bookTitle'>"+this.allBooks[i].title+"</td><td class='auth'>"+this.allBooks[i].author+"</td><td class='numPages'>"+this.allBooks[i].numPages+"</td><td class='delete text-center'>&#9851</td><td><img class='img-pop' src='"+"data:image/png;base64, "+this.allBooks[i].cover+"'></td></tr>");
-  // $("table tbody").append("<tr data-id='"+this.allBooks[i]._id+"'><td scope='row'>"+i+"</td><td class='bookTitle'>"+this.allBooks[i].title+"</td><td class='auth'>"+this.allBooks[i].author+"</td><td class='numPages'>"+this.allBooks[i].numPages+"</td><td class='delete text-center'>&#9851</td><td><img class='img-pop' src='"+"data:image/png;base64, "+this.allBooks[i].cover+"'></td></tr>");
+  $("table tbody").append("<tr data-id='"+this.allBooks[i]._id+"'><td scope='row'>"+i+"</td> <td class='editBtn btn btn-round' type='button'>edit</button><td class='bookTitle'>"+this.allBooks[i].title+"</td><td class='auth'>"+this.allBooks[i].author+"</td><td class='numPages'>"+this.allBooks[i].numPages+"</td><td class='delete text-center'>&#9851</td><td><img class='img-pop' src='"+"data:image/png;base64, "+this.allBooks[i].cover+"'></td></tr>");
                                                                                          
 };
 
@@ -169,7 +166,6 @@ library.prototype.renderRow = function(i, book){
     $("#btn0").show();
     // $("#myTable").tablesorter();
     this._bindMyEvents();
-    this.getLocStoLib();
     $('[data-toggle="tooltip"]').tooltip();
      this.getApiData();
     // this.renderTable();
@@ -188,10 +184,6 @@ $( document ).ready (function() { //Doc ready
 });
 
 library.prototype.getApiData = function() {
-  // event.preventDefault();
-  // this.$myCountry = $("#inputCountry").val();
-  // this.$myState = $("#inputState").val();
-  // this.$myPages = $("#inputNumResults").val();
   $.ajax({
       dataType: 'json',
       type:"GET",
@@ -202,6 +194,17 @@ library.prototype.getApiData = function() {
       console.log("fail")
     });
 };
+library.prototype._refreshDataSuccess = function(response) {
+  if (response){
+    $("tbody").children().remove();
+    this.allBooks = [];
+      for(var i = 0; i <response.length; i++ ) {
+        this.allBooks.push(response[i]);
+    } }  else {
+        return false;}
+      this.renderTable();
+  };
+      
 library.prototype.postApiData = function() {
   $.ajax({
     dataType: 'json',
@@ -214,39 +217,41 @@ library.prototype.postApiData = function() {
          pubDate: $("#bookPubDateInput1").val(),
          cover: $("#bookUrlInput1").val()
       }
-    }).done($.proxy(this._refreshDataSuccess, this)
+    }).done($.proxy(this.getApiData, this)
   ).fail(function(){
     console.log("fail")
   });
 };
-library.prototype.putApiData = function() {
+library.prototype.putApiData = function(id) {
   $.ajax({
     dataType: 'json',
+    // url:"http://127.0.0.1:3000/library",
+    url:"http://127.0.0.1:3000/library/" + id,
     type:"PUT",
-    url:"http://127.0.0.1:3000/library",
       data: {
-        _id: $("#dbID").val(),
          title: $("#bookTitleInput1").val(),
          author: $("#bookAuthorInput1").val(),
          numPages: $("#bookNumPageInput1").val(),
          pubDate: $("#bookPubDateInput1").val(),
          cover: $("#bookUrlInput1").val()
       }
-    }).done(console.log("success")).fail(function(){
+    }).done($.proxy(this.getApiData, this)
+  ).fail(function(){
     console.log("fail")
   });
 };
+  
+library.prototype.deleteBookById = function (id) {
 
-library.prototype._refreshDataSuccess = function(response) {
-  if (response){
-    $("tbody").children().remove();
-      for(var i = 0; i <response.length; i++ ) {
-        this.allBooks.push(response[i]);
-    } }  else {
-        return false;}
-      this.renderTable();
-  };
-        
+  $.ajax({
+    dataType: 'json',
+    url:"http://127.0.0.1:3000/library/" + id,
+    type: "DELETE",
+}).done(function (response) {
+  console.log(response);
+});
+};
+
 library.prototype.setLib = function() {
   // localStorage.setItem(this.stoKey, JSON.stringify(this.allBooks));
 };
@@ -296,17 +301,6 @@ library.prototype.removeBookByTitle = function (title) {
     return false;
 };
 
-library.prototype.deleteBookById = function (id) {
-
-  $.ajax({
-    dataType: 'json',
-    url:"http://127.0.0.1:3000/library/" + id,
-    type: "DELETE",
-}).done(function (response) {
-  console.log(response);
-});
-};
-
 // removeBookByAuthor(authorName)
 // Purpose: Remove a specific book from your books array by the author name.
 // Return: boolean true if the book(s) were removed, false if no books match
@@ -314,6 +308,8 @@ library.prototype.removeBookByAuthor = function (author) {
   var b = 0;
   for (var i= this.allBooks.length - 1; i > -1; --i) {
       if (this.allBooks[i].author === author) {
+        var id = this.allBooks[i]._id;
+        this.deleteBookById(id);
         this.allBooks.splice(i, 1);
         b++;
       }
@@ -593,14 +589,11 @@ library.prototype.removeByTitle = function () {
       $("#compMsg").removeClass("d-none");
       $("#compMsg").text( "Title " + this.$mySearchInput.val() + " removed");
       this.renderTable();
-      this.setLib();
-      // document.getElementById("compMsg").innerHTML = "";
     }    else {
       $("#compMsg").text("not found");
       $("#compMsg" ).removeClass( "d-none" );
       $("#selectLabel").text("enter title");
     }
-    // target.innerHTML = '<li>' + titleResults.join('</li><li>') + '</li>';
     return true;
 
 };
